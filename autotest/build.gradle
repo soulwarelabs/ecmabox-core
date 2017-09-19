@@ -1,0 +1,30 @@
+buildscript {
+
+    repositories {
+
+        jcenter()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group 'com.soulwarelabs.ecmabox'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+
+    jcenter()
+}
+
+dependencies {
+
+    // @formatter:off (required to keep the list of dependencies as a table)
+    
+    compile     project(path: ':ecmabox-core')
+
+    // @formatter:on
+}

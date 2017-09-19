@@ -1,0 +1,4 @@
+rootProject.name = 'ecmabox-core-autotest'
+
+include ':ecmabox-core'
+project(':ecmabox-core').projectDir = new File(settingsDir, '../source')
