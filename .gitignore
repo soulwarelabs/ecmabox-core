@@ -1,0 +1,20 @@
+# Java
+*.class
+*.jar
+*.war
+
+# Gradle
+source/.gradle/
+source/build/
+source/out/
+
+# Gradle Wrapper
+!source/gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+source/.idea/
+source/**/*.iml
+
+# Miscellaneous
+*.lock
+*.tmp
