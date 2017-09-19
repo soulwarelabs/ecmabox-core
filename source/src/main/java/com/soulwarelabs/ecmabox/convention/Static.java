@@ -25,6 +25,9 @@ import java.lang.annotation.Target;
 /**
  * Marks a type which acts like a static service.
  *
+ * @see Builder
+ * @see Factory
+ *
  * @author Ilia Gubarev
  */
 @Documented

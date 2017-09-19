@@ -27,6 +27,8 @@ import java.lang.annotation.Target;
  * <br/>
  * These types are guarantied to stay back-compatible within a specific major version.
  *
+ * @see Private
+ *
  * @author Ilia Gubarev
  */
 @Documented

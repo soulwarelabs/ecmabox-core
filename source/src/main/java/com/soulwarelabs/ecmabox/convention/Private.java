@@ -28,6 +28,8 @@ import java.lang.annotation.Target;
  * These types could be changed without any back-compatibility support,
  * therefore must not be referenced by a client code directly.
  *
+ * @see Public
+ *
  * @author Ilia Gubarev
  */
 @Documented

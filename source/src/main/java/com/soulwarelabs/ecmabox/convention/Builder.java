@@ -25,6 +25,9 @@ import java.lang.annotation.Target;
 /**
  * Marks a type which acts like a builder.
  *
+ * @see Factory
+ * @see Static
+ *
  * @author Ilia Gubarev
  */
 @Documented
