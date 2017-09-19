@@ -4,14 +4,20 @@
 *.war
 
 # Gradle
+autotest/.gradle/
+autotest/build/
+autotest/out/
 source/.gradle/
 source/build/
 source/out/
 
 # Gradle Wrapper
+!autotest/gradle/wrapper/gradle-wrapper.jar
 !source/gradle/wrapper/gradle-wrapper.jar
 
 # IDE
+autotest/.idea/
+autotest/**/*.iml
 source/.idea/
 source/**/*.iml
 
