@@ -23,9 +23,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type to be a part of the exposed API.
+ * Marks a type which is a part of exposed API.
  * <br/>
- * These types are guarantied to stay back-compatible within a specific major version.
+ * Such types are guaranteed to be kept back-compatible within a specific major version.
  *
  * @see Private
  *
