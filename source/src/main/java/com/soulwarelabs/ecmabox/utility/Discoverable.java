@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.convention;
+package com.soulwarelabs.ecmabox.utility;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -22,6 +22,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.soulwarelabs.ecmabox.convention.Private;
+
 /**
  * Marks a type which can be discovered on classpath.
  * <br/>
@@ -29,11 +31,15 @@ import java.lang.annotation.Target;
  *
  * @author Ilia Gubarev
  */
+@Private
 @Documented
 @Inherited
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Discoverable {
 
-    String value() default "";
+    /**
+     * Type unique tag, which can be used for its discovery later.
+     */
+    String tag();
 }
