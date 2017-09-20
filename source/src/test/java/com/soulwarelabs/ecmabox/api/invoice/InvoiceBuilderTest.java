@@ -15,10 +15,15 @@
  */
 package com.soulwarelabs.ecmabox.api.invoice;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -51,6 +56,7 @@ public class InvoiceBuilderTest {
     public void invokeInvoiceConstructorWithCustomProperties() throws Exception {
         final String description = "Test description";
         final boolean restricted = true;
+        final Set<InvoiceRestriction> restrictions = Collections.singleton(InvoiceRestriction.EVAL);
         final String script = "1 + 1";
         final boolean timeoutEnabled = true;
         final long timeoutInMilliseconds = 42;
@@ -58,6 +64,7 @@ public class InvoiceBuilderTest {
         final Invoice invoice = builder
                 .description(description)
                 .restricted(restricted)
+                .restriction(InvoiceRestriction.EVAL)
                 .script(script)
                 .timeoutEnabled(timeoutEnabled)
                 .timeoutInMilliseconds(timeoutInMilliseconds)
@@ -67,12 +74,13 @@ public class InvoiceBuilderTest {
         PowerMockito
                 .verifyNew(Invoice.class)
                 .withArguments(
-                        description,
-                        restricted,
-                        script,
-                        timeoutEnabled,
-                        timeoutInMilliseconds,
-                        version
+                        ArgumentMatchers.eq(description),
+                        ArgumentMatchers.eq(restricted),
+                        ArgumentMatchers.eq(restrictions),
+                        ArgumentMatchers.eq(script),
+                        ArgumentMatchers.eq(timeoutEnabled),
+                        ArgumentMatchers.eq(timeoutInMilliseconds),
+                        ArgumentMatchers.eq(version)
                 );
     }
 
@@ -84,12 +92,13 @@ public class InvoiceBuilderTest {
         PowerMockito
                 .verifyNew(Invoice.class)
                 .withArguments(
-                        InvoiceBuilder.DEFAULT_DESCRIPTION,
-                        InvoiceBuilder.DEFAULT_RESTRICTED,
-                        defaultScript,
-                        InvoiceBuilder.DEFAULT_TIMEOUT_ENABLED,
-                        InvoiceBuilder.DEFAULT_TIMEOUT_IN_MILLISECONDS,
-                        InvoiceBuilder.DEFAULT_VERSION
+                        ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_DESCRIPTION),
+                        ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_RESTRICTED),
+                        ArgumentMatchers.eq(new HashSet<>()),
+                        ArgumentMatchers.eq(defaultScript),
+                        ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_TIMEOUT_ENABLED),
+                        ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_TIMEOUT_IN_MILLISECONDS),
+                        ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_VERSION)
                 );
     }
 }

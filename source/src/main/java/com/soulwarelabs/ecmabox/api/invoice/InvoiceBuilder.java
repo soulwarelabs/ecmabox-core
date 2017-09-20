@@ -15,6 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.api.invoice;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.soulwarelabs.ecmabox.convention.Builder;
@@ -58,6 +61,7 @@ public final class InvoiceBuilder {
 
     private String description = DEFAULT_DESCRIPTION;
     private boolean restricted = DEFAULT_RESTRICTED;
+    private Set<InvoiceRestriction> restrictions = new HashSet<>();
     private String script = null;
     private boolean timeoutEnabled = DEFAULT_TIMEOUT_ENABLED;
     private long timeoutInMilliseconds = DEFAULT_TIMEOUT_IN_MILLISECONDS;
@@ -89,6 +93,19 @@ public final class InvoiceBuilder {
      */
     public InvoiceBuilder restricted(final boolean restricted) {
         this.restricted = restricted;
+        return this;
+    }
+
+    /**
+     * Adds a new execution restriction.
+     *
+     * @param restriction execution restriction to be applied.
+     * @return this invoice builder.
+     *
+     * @see InvoiceRestriction
+     */
+    public InvoiceBuilder restriction(final InvoiceRestriction restriction) {
+        this.restrictions.add(restriction);
         return this;
     }
 
@@ -145,6 +162,7 @@ public final class InvoiceBuilder {
         return new Invoice(
                 description,
                 restricted,
+                restrictions,
                 script,
                 timeoutEnabled,
                 timeoutInMilliseconds,

@@ -15,7 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.api.invoice;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -28,6 +30,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  * Contains all information required to execute the attached script.
  *
  * @see InvoiceBuilder
+ * @see InvoiceRestriction
  *
  * @author Ilia Gubarev
  */
@@ -37,6 +40,7 @@ public final class Invoice {
 
     private final String description;
     private final boolean restricted;
+    private final Set<InvoiceRestriction> restrictions;
     private final String script;
     private final boolean timeoutEnabled;
     private final long timeoutInMilliseconds;
@@ -47,6 +51,7 @@ public final class Invoice {
      *
      * @param description brief invoice description (optional).
      * @param restricted <code>true</code> if this invoice must be executed with restrictions applied.
+     * @param restrictions set of restrictions which must be applied to this execution.
      * @param script attached ECMA script to be executed.
      * @param timeoutEnabled <code>true</code> if this invoice execution is bound to a time limit.
      * @param timeoutInMilliseconds execution time limit value in milliseconds (non-negative).
@@ -54,12 +59,15 @@ public final class Invoice {
      */
     public Invoice(final String description,
                    final boolean restricted,
+                   final Set<InvoiceRestriction> restrictions,
                    final String script,
                    final boolean timeoutEnabled,
                    final long timeoutInMilliseconds,
                    final String version) {
         this.description = description;
         this.restricted = restricted;
+        Objects.requireNonNull(restrictions, "Execution restriction set cannot be null");
+        this.restrictions = new HashSet<>(restrictions);
         Objects.requireNonNull(script, "Execution script cannot be null");
         this.script = script;
         this.timeoutEnabled = timeoutEnabled;
@@ -92,6 +100,17 @@ public final class Invoice {
      */
     public boolean isRestricted() {
         return restricted;
+    }
+
+    /**
+     * Gets a set of restrictions which must be applied to this execution.
+     *
+     * @return set of execution restrictions.
+     *
+     * @see InvoiceRestriction
+     */
+    public Set<InvoiceRestriction> getRestrictions() {
+        return new HashSet<>(restrictions);
     }
 
     /**

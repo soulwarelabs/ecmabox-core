@@ -15,6 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.api.invoice;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,23 +31,37 @@ public class InvoiceTest {
 
     private final String description = "This is a test invoice";
     private final boolean restricted = true;
+    private final Set<InvoiceRestriction> restrictions = Collections.singleton(InvoiceRestriction.EVAL);
     private final String script = "1 + 1";
     private final boolean timeoutEnabled = true;
     private final long timeoutInMilliseconds = 42;
     private final String version = "1.0";
 
-    @Test
-    public void createNewValidInstance() {
-        final Invoice invoice = new Invoice(
+    private Invoice createNewInstanceWithValidProperties() {
+        return new Invoice(
                 description,
                 restricted,
+                restrictions,
                 script,
                 timeoutEnabled,
                 timeoutInMilliseconds,
                 version
         );
+    }
+
+    @Test
+    public void copyRestrictionsOnGet() {
+        final Invoice invoice = createNewInstanceWithValidProperties();
+        Assert.assertEquals(restrictions, invoice.getRestrictions());
+        Assert.assertFalse(restrictions == invoice.getRestrictions());
+    }
+
+    @Test
+    public void createNewValidInstance() {
+        final Invoice invoice = createNewInstanceWithValidProperties();
         Assert.assertEquals(description, invoice.getDescription());
         Assert.assertEquals(restricted, invoice.isRestricted());
+        Assert.assertEquals(restrictions, invoice.getRestrictions());
         Assert.assertEquals(script, invoice.getScript());
         Assert.assertEquals(timeoutEnabled, invoice.isTimeoutEnabled());
         Assert.assertEquals(timeoutInMilliseconds, invoice.getTimeoutInMilliseconds());
@@ -56,6 +73,7 @@ public class InvoiceTest {
         final Invoice invoice = new Invoice(
                 null,
                 restricted,
+                restrictions,
                 script,
                 timeoutEnabled,
                 timeoutInMilliseconds,
@@ -64,11 +82,25 @@ public class InvoiceTest {
         Assert.assertNull(invoice.getDescription());
     }
 
+    @Test(expected = NullPointerException.class)
+    public void failToCreateNewInstanceWithNullRestrictions() {
+        new Invoice(
+                description,
+                restricted,
+                null,
+                script,
+                timeoutEnabled,
+                timeoutInMilliseconds,
+                version
+        );
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void failToCreateNewInstanceWithNegativeTimeout() {
         new Invoice(
                 description,
                 restricted,
+                restrictions,
                 script,
                 timeoutEnabled,
                 -1,
@@ -81,6 +113,7 @@ public class InvoiceTest {
         new Invoice(
                 description,
                 restricted,
+                restrictions,
                 null,
                 timeoutEnabled,
                 timeoutInMilliseconds,
@@ -93,6 +126,7 @@ public class InvoiceTest {
         new Invoice(
                 description,
                 restricted,
+                restrictions,
                 script,
                 timeoutEnabled,
                 timeoutInMilliseconds,
