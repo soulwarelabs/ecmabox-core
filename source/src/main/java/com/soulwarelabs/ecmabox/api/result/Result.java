@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
@@ -114,5 +116,10 @@ public final class Result {
      */
     public ResultTermination getTermination() {
         return termination;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
