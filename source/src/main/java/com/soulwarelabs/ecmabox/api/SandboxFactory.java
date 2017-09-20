@@ -15,6 +15,8 @@
  */
 package com.soulwarelabs.ecmabox.api;
 
+import com.soulwarelabs.ecmabox.api.layout.Layout;
+import com.soulwarelabs.ecmabox.api.layout.LayoutBuilder;
 import com.soulwarelabs.ecmabox.convention.Factory;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
 import com.soulwarelabs.ecmabox.convention.Public;
@@ -22,6 +24,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
 /**
  * ECMA sandbox factory API.
  *
+ * @see Layout
  * @see Sandbox
  *
  * @author Ilia Gubarev
@@ -34,9 +37,22 @@ public interface SandboxFactory {
     /**
      * Creates a new ECMA sandbox.
      *
+     * @param layout sandbox layout configuration.
      * @return new ECMA sandbox.
      *
+     * @see Layout
      * @see Sandbox
      */
-    Sandbox create();
+    Sandbox create(Layout layout);
+
+    /**
+     * Creates a new sandbox layout builder.
+     *
+     * @return new layout builder.
+     *
+     * @see LayoutBuilder
+     */
+    default LayoutBuilder layoutBuilder() {
+        return new LayoutBuilder();
+    }
 }
