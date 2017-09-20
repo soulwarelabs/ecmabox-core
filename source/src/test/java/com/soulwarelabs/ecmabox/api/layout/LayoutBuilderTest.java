@@ -80,6 +80,11 @@ public class LayoutBuilderTest {
                 .thenReturn(layoutMock);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void failToAddNullDependency() throws Exception {
+        builder.dependency(null);
+    }
+
     @Test
     public void invokeLayoutConstructorWithCustomProperties() throws Exception {
         final Layout layout = builder

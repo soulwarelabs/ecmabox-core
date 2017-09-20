@@ -17,6 +17,7 @@ package com.soulwarelabs.ecmabox.api.layout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -124,6 +125,7 @@ public final class LayoutBuilder {
      * @see Dependency
      */
     public LayoutBuilder dependency(final Dependency dependency) {
+        Objects.requireNonNull(dependency, "Dependency cannot be null");
         this.dependencies.add(dependency);
         return this;
     }
