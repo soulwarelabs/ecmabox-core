@@ -24,7 +24,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.soulwarelabs.ecmabox.api.dependecy.DependencyOrigin;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
 @UnitTest(DependencyOrigin.class)

@@ -21,8 +21,8 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.soulwarelabs.ecmabox.api.dependecy.Dependency;
-import com.soulwarelabs.ecmabox.api.dependecy.DependencyResolver;
+import com.soulwarelabs.ecmabox.api.dependency.Dependency;
+import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
 

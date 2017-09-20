@@ -26,8 +26,8 @@ import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.soulwarelabs.ecmabox.api.dependecy.Dependency;
-import com.soulwarelabs.ecmabox.api.dependecy.DependencyResolver;
+import com.soulwarelabs.ecmabox.api.dependency.Dependency;
+import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
 @UnitTest(Layout.class)

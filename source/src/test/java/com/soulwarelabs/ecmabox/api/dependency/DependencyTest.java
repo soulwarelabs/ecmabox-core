@@ -23,8 +23,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.soulwarelabs.ecmabox.api.dependecy.Dependency;
-import com.soulwarelabs.ecmabox.api.dependecy.DependencyOrigin;
 import com.soulwarelabs.ecmabox.api.utility.UrlHelper;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 

@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api.dependecy;
+package com.soulwarelabs.ecmabox.api.dependency;
 
 import java.util.Objects;
 
