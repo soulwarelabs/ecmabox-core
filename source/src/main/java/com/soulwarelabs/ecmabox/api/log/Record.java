@@ -26,7 +26,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
 /**
  * Log record produced during an execution.
  *
- * @see RecordType
+ * @see RecordLevel
  *
  * @author Ilia Gubarev
  */
@@ -35,25 +35,25 @@ import com.soulwarelabs.ecmabox.convention.Public;
 public final class Record implements Comparable<Record> {
 
     private final String content;
-    private final RecordType type;
+    private final RecordLevel level;
     private final Instant when;
 
     /**
      * Create a new log record.
      *
      * @param content record text content.
-     * @param type record type (level).
+     * @param level record level.
      * @param when record registration timestamp.
      *
-     * @see RecordType
+     * @see RecordLevel
      */
     public Record(final String content,
-                  final RecordType type,
+                  final RecordLevel level,
                   final Instant when) {
         Objects.requireNonNull(content, "Log record content cannot be null");
         this.content = content;
-        Objects.requireNonNull(type, "Log record type cannot be null");
-        this.type = type;
+        Objects.requireNonNull(level, "Log record level cannot be null");
+        this.level = level;
         Objects.requireNonNull(when, "Log record registration timestamp cannot be null");
         this.when = when;
     }
@@ -68,14 +68,14 @@ public final class Record implements Comparable<Record> {
     }
 
     /**
-     * Gets the type (level) of this log record.
+     * Gets the level of this log record.
      *
-     * @return log record type.
+     * @return log record level.
      *
-     * @see RecordType
+     * @see RecordLevel
      */
-    public RecordType getType() {
-        return type;
+    public RecordLevel getLevel() {
+        return level;
     }
 
     /**

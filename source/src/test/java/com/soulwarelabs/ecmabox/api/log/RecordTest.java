@@ -28,11 +28,11 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
 @UnitTest(Record.class)
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({RecordType.class})
+@PrepareForTest({RecordLevel.class})
 public class RecordTest {
 
     @Mock
-    private RecordType typeMock;
+    private RecordLevel levelMock;
 
     private String content = "some test log content";
     private Instant when = Instant.now();
@@ -42,12 +42,12 @@ public class RecordTest {
     public void createAndCompareTwoInstances() {
         final Record record = new Record(
                 content,
-                typeMock,
+                levelMock,
                 when
         );
         final Record recordOlder = new Record(
                 content,
-                typeMock,
+                levelMock,
                 whenOlder
         );
         Assert.assertTrue(recordOlder.compareTo(record) < 0);
@@ -57,11 +57,11 @@ public class RecordTest {
     public void createNewValidInstance() {
         final Record record = new Record(
                 content,
-                typeMock,
+                levelMock,
                 when
         );
         Assert.assertEquals(content, record.getContent());
-        Assert.assertEquals(typeMock, record.getType());
+        Assert.assertEquals(levelMock, record.getLevel());
         Assert.assertEquals(when, record.getWhen());
     }
 
@@ -69,13 +69,13 @@ public class RecordTest {
     public void failToCreateNewInstanceWithNullContent() {
         new Record(
                 null,
-                typeMock,
+                levelMock,
                 when
         );
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullType() {
+    public void failToCreateNewInstanceWithNullLevel() {
         new Record(
                 content,
                 null,
@@ -87,7 +87,7 @@ public class RecordTest {
     public void failToCreateNewInstanceWithNullWhen() {
         new Record(
                 content,
-                typeMock,
+                levelMock,
                 null
         );
     }
