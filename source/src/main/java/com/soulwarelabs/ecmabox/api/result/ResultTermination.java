@@ -20,14 +20,14 @@ import com.soulwarelabs.ecmabox.convention.Key;
 import com.soulwarelabs.ecmabox.convention.Public;
 
 /**
- * Invoice execution result (termination) type.
+ * Invoice execution result termination type.
  *
  * @author Ilia Gubarev
  */
 @Public
 @Immutable
 @Key
-public enum ResultType {
+public enum ResultTermination {
 
     /**
      * Execution has been terminated because it had produced an exception.

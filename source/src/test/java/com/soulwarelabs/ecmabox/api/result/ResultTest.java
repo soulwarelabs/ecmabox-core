@@ -37,21 +37,21 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
         ResultContent.class,
         Invoice.class,
         Record.class,
-        ResultType.class
+        ResultTermination.class
 })
 public class ResultTest {
 
     private ResultContent contentMock;
     private Invoice invoiceMock;
     private List<Record> recordMocks;
-    private ResultType typeMock;
+    private ResultTermination terminationMock;
 
     @Before
     public void prepareMocks() {
         contentMock = PowerMockito.mock(ResultContent.class);
         invoiceMock = PowerMockito.mock(Invoice.class);
         recordMocks = Collections.singletonList(PowerMockito.mock(Record.class));
-        typeMock = PowerMockito.mock(ResultType.class);
+        terminationMock = PowerMockito.mock(ResultTermination.class);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class ResultTest {
         Assert.assertEquals(contentMock, result.getContent());
         Assert.assertEquals(invoiceMock, result.getInvoice());
         Assert.assertEquals(recordMocks, result.getRecords());
-        Assert.assertEquals(typeMock, result.getType());
+        Assert.assertEquals(terminationMock, result.getTermination());
     }
 
     @Test(expected = NullPointerException.class)
@@ -75,7 +75,7 @@ public class ResultTest {
                 null,
                 invoiceMock,
                 recordMocks,
-                typeMock
+                terminationMock
         );
     }
 
@@ -85,7 +85,7 @@ public class ResultTest {
                 contentMock,
                 null,
                 recordMocks,
-                typeMock
+                terminationMock
         );
     }
 
@@ -95,12 +95,12 @@ public class ResultTest {
                 contentMock,
                 invoiceMock,
                 null,
-                typeMock
+                terminationMock
         );
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullType() {
+    public void failToCreateNewInstanceWithNullTermination() {
         new Result(
                 contentMock,
                 invoiceMock,
@@ -114,7 +114,7 @@ public class ResultTest {
                 contentMock,
                 invoiceMock,
                 recordMocks,
-                typeMock
+                terminationMock
         );
     }
 }

@@ -32,7 +32,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  * @see Invoice
  * @see Record
  * @see ResultContent
- * @see ResultType
+ * @see ResultTermination
  *
  * @author Ilia Gubarev
  */
@@ -43,7 +43,7 @@ public final class Result {
     private final ResultContent content;
     private final Invoice invoice;
     private final List<Record> records;
-    private final ResultType type;
+    private final ResultTermination termination;
 
     /**
      * Creates a new execution result.
@@ -51,25 +51,25 @@ public final class Result {
      * @param content invoice execution result content.
      * @param invoice original execution invoice.
      * @param records log records produced during execution of the invoice.
-     * @param type execution result (termination) type.
+     * @param termination execution result termination type.
      *
      * @see Invoice
      * @see Record
      * @see ResultContent
-     * @see ResultType
+     * @see ResultTermination
      */
     public Result(final ResultContent content,
                   final Invoice invoice,
                   final List<Record> records,
-                  final ResultType type) {
+                  final ResultTermination termination) {
         Objects.requireNonNull(content, "Result content cannot be null");
         this.content = content;
         Objects.requireNonNull(invoice, "Execution invoice cannot be null");
         this.invoice = invoice;
         Objects.requireNonNull(records, "Execution log records cannot be null");
         this.records = new ArrayList<>(records);
-        Objects.requireNonNull(type, "Result type cannot be null");
-        this.type = type;
+        Objects.requireNonNull(termination, "Result termination type cannot be null");
+        this.termination = termination;
     }
 
     /**
@@ -110,9 +110,9 @@ public final class Result {
      *
      * @return termination type.
      *
-     * @see ResultType
+     * @see ResultTermination
      */
-    public ResultType getType() {
-        return type;
+    public ResultTermination getTermination() {
+        return termination;
     }
 }

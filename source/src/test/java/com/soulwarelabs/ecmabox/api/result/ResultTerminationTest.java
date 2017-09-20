@@ -26,23 +26,23 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@UnitTest(ResultType.class)
+@UnitTest(ResultTermination.class)
 @RunWith(PowerMockRunner.class)
-public class ResultTypeTest {
+public class ResultTerminationTest {
 
-    private List<ResultType> types;
+    private List<ResultTermination> elements;
 
     @Before
-    public void prepareTypes() {
-        types = Arrays.asList(
-                ResultType.EXCEPTION,
-                ResultType.SUCCESS,
-                ResultType.TIMEOUT
+    public void prepareElements() {
+        elements = Arrays.asList(
+                ResultTermination.EXCEPTION,
+                ResultTermination.SUCCESS,
+                ResultTermination.TIMEOUT
         );
     }
 
     @Test
     public void doesNotContainExtraElements() {
-        Assert.assertEquals(types.size(), ResultType.values().length);
+        Assert.assertEquals(elements.size(), ResultTermination.values().length);
     }
 }
