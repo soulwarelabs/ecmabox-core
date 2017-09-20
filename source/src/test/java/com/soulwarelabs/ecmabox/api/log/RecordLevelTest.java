@@ -30,11 +30,11 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @RunWith(PowerMockRunner.class)
 public class RecordLevelTest {
 
-    private List<RecordLevel> levels;
+    private List<RecordLevel> elements;
 
     @Before
     public void prepareTypes() {
-        levels = Arrays.asList(
+        elements = Arrays.asList(
                 RecordLevel.TRACE,
                 RecordLevel.DEBUG,
                 RecordLevel.INFO,
@@ -46,13 +46,13 @@ public class RecordLevelTest {
 
     @Test
     public void doesNotContainExtraElements() {
-        Assert.assertEquals(levels.size(), RecordLevel.values().length);
+        Assert.assertEquals(elements.size(), RecordLevel.values().length);
     }
 
     @Test
     public void precedencesAreInOrder() {
         RecordLevel previous = null;
-        for (final RecordLevel level : levels) {
+        for (final RecordLevel level : elements) {
             if (previous != null) {
                 Assert.assertTrue(previous.lowerThan(level));
             }

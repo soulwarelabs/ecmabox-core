@@ -30,15 +30,15 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @RunWith(PowerMockRunner.class)
 public class InvoiceRestrictionTest {
 
-    private List<InvoiceRestriction> restrictions;
+    private List<InvoiceRestriction> elements;
 
     @Before
     public void prepareTypes() {
-        restrictions = Collections.singletonList(InvoiceRestriction.EVAL);
+        elements = Collections.singletonList(InvoiceRestriction.EVAL);
     }
 
     @Test
     public void doesNotContainExtraElements() {
-        Assert.assertEquals(restrictions.size(), InvoiceRestriction.values().length);
+        Assert.assertEquals(elements.size(), InvoiceRestriction.values().length);
     }
 }

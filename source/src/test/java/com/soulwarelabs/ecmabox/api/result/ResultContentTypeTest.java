@@ -30,11 +30,11 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @RunWith(PowerMockRunner.class)
 public class ResultContentTypeTest {
 
-    private List<ResultContentType> types;
+    private List<ResultContentType> elements;
 
     @Before
     public void prepareTypes() {
-        types = Arrays.asList(
+        elements = Arrays.asList(
                 ResultContentType.ARRAY,
                 ResultContentType.BOOLEAN,
                 ResultContentType.FUNCTION,
@@ -47,6 +47,6 @@ public class ResultContentTypeTest {
 
     @Test
     public void doesNotContainExtraElements() {
-        Assert.assertEquals(types.size(), ResultContentType.values().length);
+        Assert.assertEquals(elements.size(), ResultContentType.values().length);
     }
 }
