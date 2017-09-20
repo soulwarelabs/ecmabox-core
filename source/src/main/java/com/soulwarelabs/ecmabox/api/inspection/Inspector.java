@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api;
+package com.soulwarelabs.ecmabox.api.inspection;
 
 import java.util.function.Function;
 
@@ -29,7 +29,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  */
 @Public
 @ImmutableByContract
-public interface SandboxInspector<T> extends Function<Object[], T> {
+public interface Inspector<T> extends Function<Object[], T> {
 
     /**
      * Performs sandbox inspection.

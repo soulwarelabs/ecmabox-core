@@ -17,6 +17,7 @@ package com.soulwarelabs.ecmabox.api;
 
 import java.util.List;
 
+import com.soulwarelabs.ecmabox.api.inspection.Inspector;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.invoice.InvoiceBuilder;
 import com.soulwarelabs.ecmabox.api.log.Record;
@@ -29,7 +30,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  * @see Invoice
  * @see Record
  * @see Result
- * @see SandboxInspector
+ * @see Inspector
  *
  * @author Ilia Gubarev
  */
@@ -63,9 +64,9 @@ public interface Sandbox {
      * @param <T> inspection result type.
      * @return inspection result.
      *
-     * @see SandboxInspector
+     * @see Inspector
      */
-    <T> T inspect(SandboxInspector<T> inspector);
+    <T> T inspect(Inspector<T> inspector);
 
     /**
      * Creates a new invoice builder.
