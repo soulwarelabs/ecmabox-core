@@ -26,36 +26,45 @@ import com.soulwarelabs.ecmabox.convention.Public;
 /**
  * Log record produced during an execution.
  *
- * @see LogRecordType
+ * @see RecordType
  *
  * @author Ilia Gubarev
  */
 @Public
 @Immutable
-public final class LogRecord implements Comparable<LogRecord> {
+public final class Record implements Comparable<Record> {
 
-    private final LogRecordType type;
-    private final String value;
+    private final String content;
+    private final RecordType type;
     private final Instant when;
 
     /**
      * Create a new log record.
      *
+     * @param content record text content.
      * @param type record type (level).
-     * @param value record value.
      * @param when record registration timestamp.
      *
-     * @see LogRecordType
+     * @see RecordType
      */
-    public LogRecord(final LogRecordType type,
-                     final String value,
-                     final Instant when) {
+    public Record(final String content,
+                  final RecordType type,
+                  final Instant when) {
+        Objects.requireNonNull(content, "Log record content cannot be null");
+        this.content = content;
         Objects.requireNonNull(type, "Log record type cannot be null");
         this.type = type;
-        Objects.requireNonNull(value, "Log record value cannot be null");
-        this.value = value;
         Objects.requireNonNull(when, "Log record registration timestamp cannot be null");
         this.when = when;
+    }
+
+    /**
+     * Gets the text content of this log record.
+     *
+     * @return log record content.
+     */
+    public String getContent() {
+        return content;
     }
 
     /**
@@ -63,19 +72,10 @@ public final class LogRecord implements Comparable<LogRecord> {
      *
      * @return log record type.
      *
-     * @see LogRecordType
+     * @see RecordType
      */
-    public LogRecordType getType() {
+    public RecordType getType() {
         return type;
-    }
-
-    /**
-     * Gets the value of this log record.
-     *
-     * @return log record value.
-     */
-    public String getValue() {
-        return value;
     }
 
     /**
@@ -88,7 +88,7 @@ public final class LogRecord implements Comparable<LogRecord> {
     }
 
     @Override
-    public int compareTo(final LogRecord other) {
+    public int compareTo(final Record other) {
         Objects.requireNonNull(other, "Log record to compare cannot be null");
         return when.compareTo(other.when);
     }

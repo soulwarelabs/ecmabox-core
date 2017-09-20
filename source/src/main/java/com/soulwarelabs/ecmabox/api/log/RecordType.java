@@ -24,14 +24,14 @@ import com.soulwarelabs.ecmabox.convention.Public;
 /**
  * Log record type (level).
  *
- * @see LogRecord
+ * @see Record
  *
  * @author Ilia Gubarev
  */
 @Public
 @Immutable
 @Key
-public enum LogRecordType {
+public enum RecordType {
 
     /**
      * The finest possible level of execution debug.
@@ -65,7 +65,7 @@ public enum LogRecordType {
 
     private final int precedence;
 
-    LogRecordType(final int precedence) {
+    RecordType(final int precedence) {
         this.precedence = precedence;
     }
 
@@ -84,7 +84,7 @@ public enum LogRecordType {
      * @param another log record type to compare.
      * @return <code>true</code> if this type has a lower precedence than another.
      */
-    public boolean lowerThan(final LogRecordType another) {
+    public boolean lowerThan(final RecordType another) {
         Objects.requireNonNull(another, "Log record type cannot be null");
         return precedence < another.precedence;
     }

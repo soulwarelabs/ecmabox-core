@@ -26,33 +26,33 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@UnitTest(LogRecordType.class)
+@UnitTest(RecordType.class)
 @RunWith(PowerMockRunner.class)
-public class LogRecordTypeTest {
+public class RecordTypeTest {
 
-    private List<LogRecordType> types;
+    private List<RecordType> types;
 
     @Before
     public void prepareTypes() {
         types = Arrays.asList(
-                LogRecordType.TRACE,
-                LogRecordType.DEBUG,
-                LogRecordType.INFO,
-                LogRecordType.WARN,
-                LogRecordType.ERROR,
-                LogRecordType.FATAl
+                RecordType.TRACE,
+                RecordType.DEBUG,
+                RecordType.INFO,
+                RecordType.WARN,
+                RecordType.ERROR,
+                RecordType.FATAl
         );
     }
 
     @Test
     public void doesNotContainExtraElements() {
-        Assert.assertEquals(types.size(), LogRecordType.values().length);
+        Assert.assertEquals(types.size(), RecordType.values().length);
     }
 
     @Test
     public void precedencesAreInOrder() {
-        LogRecordType previous = null;
-        for (final LogRecordType type : types) {
+        RecordType previous = null;
+        for (final RecordType type : types) {
             if (previous != null) {
                 Assert.assertTrue(previous.lowerThan(type));
             }

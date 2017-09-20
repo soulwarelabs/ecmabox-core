@@ -26,28 +26,28 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@UnitTest(LogRecord.class)
+@UnitTest(Record.class)
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({LogRecordType.class})
-public class LogRecordTest {
+@PrepareForTest({RecordType.class})
+public class RecordTest {
 
     @Mock
-    private LogRecordType typeMock;
+    private RecordType typeMock;
 
-    private String value = "some test log value";
+    private String content = "some test log content";
     private Instant when = Instant.now();
     private Instant whenOlder = when.minusMillis(42);
 
     @Test
     public void createAndCompareTwoInstances() {
-        final LogRecord record = new LogRecord(
+        final Record record = new Record(
+                content,
                 typeMock,
-                value,
                 when
         );
-        final LogRecord recordOlder = new LogRecord(
+        final Record recordOlder = new Record(
+                content,
                 typeMock,
-                value,
                 whenOlder
         );
         Assert.assertTrue(recordOlder.compareTo(record) < 0);
@@ -55,29 +55,29 @@ public class LogRecordTest {
 
     @Test
     public void createNewValidInstance() {
-        final LogRecord record = new LogRecord(
+        final Record record = new Record(
+                content,
                 typeMock,
-                value,
                 when
         );
+        Assert.assertEquals(content, record.getContent());
         Assert.assertEquals(typeMock, record.getType());
-        Assert.assertEquals(value, record.getValue());
         Assert.assertEquals(when, record.getWhen());
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullType() {
-        new LogRecord(
+    public void failToCreateNewInstanceWithNullContent() {
+        new Record(
                 null,
-                value,
+                typeMock,
                 when
         );
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullValue() {
-        new LogRecord(
-                typeMock,
+    public void failToCreateNewInstanceWithNullType() {
+        new Record(
+                content,
                 null,
                 when
         );
@@ -85,9 +85,9 @@ public class LogRecordTest {
 
     @Test(expected = NullPointerException.class)
     public void failToCreateNewInstanceWithNullWhen() {
-        new LogRecord(
+        new Record(
+                content,
                 typeMock,
-                value,
                 null
         );
     }
