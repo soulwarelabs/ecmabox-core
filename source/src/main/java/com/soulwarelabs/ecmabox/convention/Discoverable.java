@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  */
 @Documented
 @Inherited
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
 public @interface Discoverable {
 
