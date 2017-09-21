@@ -15,18 +15,69 @@
  */
 package com.soulwarelabs.ecmabox.api;
 
-import org.junit.Ignore;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.soulwarelabs.ecmabox.api.inspection.Inspector;
+import com.soulwarelabs.ecmabox.api.invoice.Invoice;
+import com.soulwarelabs.ecmabox.api.invoice.InvoiceBuilder;
+import com.soulwarelabs.ecmabox.api.log.Record;
+import com.soulwarelabs.ecmabox.api.result.Result;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@Ignore
 @UnitTest(Sandbox.class)
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Sandbox.class})
+@PrepareForTest({Sandbox.class, InvoiceBuilder.class})
 public class SandboxTest {
 
-    // TODO: add unit tests
+    private Sandbox sandbox;
+
+    @Mock
+    private InvoiceBuilder invoiceBuilderMock;
+
+    @Before
+    public void prepareSandbox() throws Exception {
+        sandbox = new Sandbox() {
+
+            @Override
+            public List<Record> drain() {
+                return null;
+            }
+
+            @Override
+            public Result execute(Invoice invoice) {
+                return null;
+            }
+
+            @Override
+            public <T> T inspect(Inspector<T> inspector) {
+                return null;
+            }
+        };
+    }
+
+    @Before
+    public void prepareMocks() throws Exception {
+        PowerMockito
+                .mockStatic(InvoiceBuilder.class);
+        PowerMockito
+                .whenNew(InvoiceBuilder.class)
+                .withNoArguments()
+                .thenReturn(invoiceBuilderMock);
+    }
+
+    @Test
+    public void invokeInvoiceBuilderConstructor() {
+        final InvoiceBuilder builder = sandbox.invoiceBuilder();
+        Assert.assertSame(invoiceBuilderMock, builder);
+        PowerMockito.verifyNew(InvoiceBuilder.class);
+    }
 }
