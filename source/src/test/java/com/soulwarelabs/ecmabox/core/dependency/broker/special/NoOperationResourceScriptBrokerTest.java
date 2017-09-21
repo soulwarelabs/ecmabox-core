@@ -21,7 +21,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.soulwarelabs.ecmabox.core.dependency.broker.ResourceScriptBroker;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
 @UnitTest(NoOperationResourceScriptBroker.class)
@@ -29,14 +28,11 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 public class NoOperationResourceScriptBrokerTest {
 
     @Mock
-    private ResourceScriptBroker failoverMock;
-
-    @Mock
     private String resourceMock;
 
     @Test
     public void receiveScript() throws Exception {
-        final NoOperationResourceScriptBroker broker = new NoOperationResourceScriptBroker(failoverMock);
+        final NoOperationResourceScriptBroker broker = new NoOperationResourceScriptBroker(null);
         final String script = broker.receive(resourceMock);
         Assert.assertSame("(function () {})();", script);
     }
