@@ -46,6 +46,7 @@ public final class Discoverables {
      *
      * @see Discoverable
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Class<?>> Optional<T> discover(final T parent, final String tag) {
         Objects.requireNonNull(parent, "Parent type cannot be null");
         Objects.requireNonNull(tag, "Type tag cannot be null");
@@ -66,11 +67,11 @@ public final class Discoverables {
      * @return new instance of the target type.
      */
     public static <T> T instantiate(final Class<? extends T> type) {
-        Objects.requireNonNull(type, "Type cannot be null");
+        Objects.requireNonNull(type, "Target type cannot be null");
         try {
             return type.newInstance();
         } catch (IllegalAccessException | InstantiationException exception) {
-            throw new RuntimeException("Type cannot be instantiated", exception);
+            throw new RuntimeException("Target type cannot be instantiated", exception);
         }
     }
 
