@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api.utility;
+package com.soulwarelabs.ecmabox.utility;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,10 +29,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@UnitTest(UrlHelper.class)
+@UnitTest(Urls.class)
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({URL.class, UrlHelper.class})
-public class UrlHelperTest {
+@PrepareForTest({URL.class, Urls.class})
+public class UrlsTest {
 
     private final String specificationInvalid = "somedomain/resource";
     private final String specificationValid = "https://somedomain.com/resource";
@@ -54,39 +54,39 @@ public class UrlHelperTest {
 
     @Test
     public void checkInvalidUrl() {
-        Assert.assertFalse(UrlHelper.validUrl(specificationInvalid));
+        Assert.assertFalse(Urls.validUrl(specificationInvalid));
     }
 
     @Test
     public void checkValidUrl() {
-        Assert.assertTrue(UrlHelper.validUrl(specificationValid));
+        Assert.assertTrue(Urls.validUrl(specificationValid));
     }
 
     @Test(expected = NullPointerException.class)
     public void failToParseNullUrl() {
-        UrlHelper.parseSafely(null);
+        Urls.parseSafely(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void failToParseInvalidUrl() {
-        UrlHelper.parse(specificationInvalid);
+        Urls.parse(specificationInvalid);
     }
 
     @Test
     public void parseValidUrl() {
-        final URL url = UrlHelper.parse(specificationValid);
+        final URL url = Urls.parse(specificationValid);
         Assert.assertEquals(urlMock, url);
     }
 
     @Test
     public void parseInvalidUrlOptional() {
-        final Optional<URL> url = UrlHelper.parseSafely(specificationInvalid);
+        final Optional<URL> url = Urls.parseSafely(specificationInvalid);
         Assert.assertFalse(url.isPresent());
     }
 
     @Test
     public void parseValidUrlOptional() {
-        final Optional<URL> url = UrlHelper.parseSafely(specificationValid);
+        final Optional<URL> url = Urls.parseSafely(specificationValid);
         Assert.assertTrue(url.isPresent());
         Assert.assertEquals(urlMock, url.get());
     }

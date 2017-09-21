@@ -13,14 +13,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api.utility;
+package com.soulwarelabs.ecmabox.utility;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.soulwarelabs.ecmabox.convention.Public;
+import com.soulwarelabs.ecmabox.convention.Private;
 import com.soulwarelabs.ecmabox.convention.Static;
 
 /**
@@ -30,9 +30,9 @@ import com.soulwarelabs.ecmabox.convention.Static;
  *
  * @author Ilia Gubarev
  */
-@Public
+@Private
 @Static
-public final class UrlHelper {
+public final class Urls {
 
     /**
      * Creates a new URL from its specification.
@@ -75,7 +75,7 @@ public final class UrlHelper {
         return parseSafely(specification).isPresent();
     }
 
-    private UrlHelper() {
+    private Urls() {
 
     }
 }

@@ -19,7 +19,7 @@ import java.util.Objects;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import com.soulwarelabs.ecmabox.api.utility.UrlHelper;
+import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Key;
 import com.soulwarelabs.ecmabox.convention.Public;
@@ -75,7 +75,7 @@ public final class Dependency {
                                 final DependencyOrigin origin) {
         Objects.requireNonNull(origin, "Dependency origin cannot be null");
         Objects.requireNonNull(resource, "Dependency resource name cannot be null");
-        if (origin == DependencyOrigin.CDN && !UrlHelper.validUrl(resource)) {
+        if (origin == DependencyOrigin.CDN && !Urls.validUrl(resource)) {
             throw new IllegalArgumentException("CDN-based dependency resource must be a valid URL specification");
         }
         return new Dependency(origin, resource);

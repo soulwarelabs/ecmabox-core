@@ -23,12 +23,12 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.soulwarelabs.ecmabox.api.utility.UrlHelper;
+import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
 @UnitTest(Dependency.class)
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({UrlHelper.class})
+@PrepareForTest({Urls.class})
 public class DependencyTest {
 
     private String cdnResourceValid = "http://resource.com";
@@ -36,12 +36,12 @@ public class DependencyTest {
 
     @Before
     public void prepareMocks() throws Exception {
-        PowerMockito.mockStatic(UrlHelper.class);
+        PowerMockito.mockStatic(Urls.class);
         PowerMockito
-                .when(UrlHelper.class, "validUrl", cdnResourceValid)
+                .when(Urls.class, "validUrl", cdnResourceValid)
                 .thenReturn(true);
         PowerMockito
-                .when(UrlHelper.class, "validUrl", cdnResourceInvalid)
+                .when(Urls.class, "validUrl", cdnResourceInvalid)
                 .thenReturn(false);
     }
 

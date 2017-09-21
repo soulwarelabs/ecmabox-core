@@ -24,7 +24,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.api.log.RecordLevel;
-import com.soulwarelabs.ecmabox.api.utility.UrlHelper;
+import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.convention.Builder;
 import com.soulwarelabs.ecmabox.convention.Public;
 
@@ -77,7 +77,7 @@ public final class LayoutBuilder {
         DEFAULT_BROWSER_LAYOUT = new BrowserLayout(
                 DEFAULT_BROWSER_LAYOUT_HTML,
                 BrowserType.DEFAULT,
-                UrlHelper.parse(DEFAULT_BROWSER_LAYOUT_URL)
+                Urls.parse(DEFAULT_BROWSER_LAYOUT_URL)
         );
         DEFAULT_LOG_LAYOUT = new LogLayout(DEFAULT_LOG_LAYOUT_ENABLED, DEFAULT_LOG_LAYOUT_LEVEL);
         DEFAULT_SERVER_LAYOUT = new ServerLayout(ServerType.DEFAULT);
