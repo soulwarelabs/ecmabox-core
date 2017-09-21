@@ -18,6 +18,7 @@ package com.soulwarelabs.ecmabox.api;
 import com.soulwarelabs.ecmabox.convention.Public;
 import com.soulwarelabs.ecmabox.convention.Static;
 import com.soulwarelabs.ecmabox.utility.Discoverables;
+import com.soulwarelabs.ecmabox.utility.InstanceBuilder;
 
 /**
  * Sandbox factory provider.
@@ -40,13 +41,15 @@ public final class SandboxFactoryProvider {
      * @see SandboxFactory
      */
     public static SandboxFactory factory() {
-        return Discoverables.instantiate(discover());
+        return new InstanceBuilder<SandboxFactory>()
+                .instantiationType(discover())
+                .build();
     }
 
-    private static Class<SandboxFactory> discover() {
+    private static Class<?> discover() {
         return Discoverables
-                .discover(SandboxFactory.class, "default-sandbox-factory")
-                .orElseThrow(() -> new RuntimeException("No default sandbox factory is available"));
+                .discover("defaultSandboxFactory")
+                .orElseThrow(() -> new RuntimeException("No instantiation type is discovered"));
     }
 
     private SandboxFactoryProvider() {

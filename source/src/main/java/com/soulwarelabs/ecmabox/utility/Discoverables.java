@@ -34,45 +34,41 @@ import com.soulwarelabs.ecmabox.convention.Static;
 @Static
 public final class Discoverables {
 
-    private static final Reflections REFLECTION = new Reflections("com.soulwarelabs.ecmabox");
+    /**
+     * Default name of a package to scan.
+     */
+    public static final String DEFAULT_PACKAGE_TO_SCAN = "com.soulwarelabs.ecmabox";
 
     /**
-     * Finds a discoverable type which has a specified identifier if any.
+     * Finds a discoverable type which has a specified identifier tag if any.
      *
-     * @param parent super type for the target type.
-     * @param tag unique target type tag.
-     * @param <T> super type.
+     * @param tag unique discoverable type tag.
      * @return found discoverable type (optional).
      *
      * @see Discoverable
      */
-    @SuppressWarnings("unchecked")
-    public static <T extends Class<?>> Optional<T> discover(final T parent, final String tag) {
-        Objects.requireNonNull(parent, "Parent type cannot be null");
-        Objects.requireNonNull(tag, "Type tag cannot be null");
-        return REFLECTION
-                .getTypesAnnotatedWith(Discoverable.class)
-                .stream()
-                .filter(t -> t.getAnnotation(Discoverable.class).tag().equals(tag))
-                .filter(parent::isAssignableFrom)
-                .map(t -> (T) t)
-                .findFirst();
+    public static Optional<Class<?>> discover(final String tag) {
+        return discover(tag, DEFAULT_PACKAGE_TO_SCAN);
     }
 
     /**
-     * Instantiates a specified type.
+     * Finds a discoverable type which has a specified identifier tag if any.
      *
-     * @param type a type to be instantiated.
-     * @param <T> target type.
-     * @return new instance of the target type.
+     * @param tag unique discoverable type tag.
+     * @param packageToScan name of a package to scan.
+     * @return found discoverable type (optional).
+     *
+     * @see Discoverable
      */
-    public static <T> T instantiate(final Class<? extends T> type) {
-        Objects.requireNonNull(type, "Target type cannot be null");
-        try {
-            return type.newInstance();
-        } catch (IllegalAccessException | InstantiationException exception) {
-            throw new RuntimeException("Target type cannot be instantiated", exception);
-        }
+    public static Optional<Class<?>> discover(final String tag, final String packageToScan) {
+        Objects.requireNonNull(tag, "Discoverable type identifier tag cannot be null");
+        Objects.requireNonNull(packageToScan, "Target package name cannot be null");
+        final Reflections reflections = new Reflections(packageToScan);
+        return reflections
+                .getTypesAnnotatedWith(Discoverable.class)
+                .stream()
+                .filter(t -> t.getAnnotation(Discoverable.class).value().equals(tag))
+                .findFirst();
     }
 
     private Discoverables() {

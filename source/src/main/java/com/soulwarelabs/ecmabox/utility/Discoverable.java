@@ -41,5 +41,5 @@ public @interface Discoverable {
     /**
      * Type unique tag, which can be used for its discovery later.
      */
-    String tag();
+    String value();
 }
