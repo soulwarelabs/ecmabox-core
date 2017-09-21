@@ -19,11 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.api.log.RecordLevel;
+import com.soulwarelabs.ecmabox.utility.Strings;
 import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.convention.Builder;
 import com.soulwarelabs.ecmabox.convention.Public;
@@ -189,6 +188,6 @@ public final class LayoutBuilder {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return Strings.toString(this);
     }
 }

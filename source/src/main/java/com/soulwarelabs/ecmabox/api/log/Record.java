@@ -18,10 +18,9 @@ package com.soulwarelabs.ecmabox.api.log;
 import java.time.Instant;
 import java.util.Objects;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
+import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Log record produced during an execution.
@@ -95,6 +94,6 @@ public final class Record implements Comparable<Record> {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return Strings.toString(this);
     }
 }

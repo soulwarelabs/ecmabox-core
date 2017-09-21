@@ -19,12 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
 import com.soulwarelabs.ecmabox.convention.Public;
+import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Invoice execution result.
@@ -120,6 +119,6 @@ public final class Result {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return Strings.toString(this);
     }
 }

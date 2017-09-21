@@ -18,10 +18,9 @@ package com.soulwarelabs.ecmabox.api.invoice;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.soulwarelabs.ecmabox.convention.Builder;
 import com.soulwarelabs.ecmabox.convention.Public;
+import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * ECMA script execution invoice builder.
@@ -172,6 +171,6 @@ public final class InvoiceBuilder {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return Strings.toString(this);
     }
 }
