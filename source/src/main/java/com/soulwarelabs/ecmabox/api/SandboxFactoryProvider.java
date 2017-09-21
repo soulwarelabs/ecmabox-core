@@ -39,7 +39,7 @@ public final class SandboxFactoryProvider {
      *
      * @see SandboxFactory
      */
-    public SandboxFactory factory() {
+    public static SandboxFactory factory() {
         return Discoverables.instantiate(discover());
     }
 
