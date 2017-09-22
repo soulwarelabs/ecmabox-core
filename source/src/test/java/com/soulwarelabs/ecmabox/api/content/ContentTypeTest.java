@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api.result;
+package com.soulwarelabs.ecmabox.api.content;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,27 +26,27 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@UnitTest(ResultContentType.class)
+@UnitTest(ContentType.class)
 @RunWith(PowerMockRunner.class)
-public class ResultContentTypeTest {
+public class ContentTypeTest {
 
-    private List<ResultContentType> elements;
+    private List<ContentType> elements;
 
     @Before
     public void prepareTypes() {
         elements = Arrays.asList(
-                ResultContentType.ARRAY,
-                ResultContentType.BOOLEAN,
-                ResultContentType.FUNCTION,
-                ResultContentType.NUMBER,
-                ResultContentType.OBJECT,
-                ResultContentType.STRING,
-                ResultContentType.UNDEFINED
+                ContentType.ARRAY,
+                ContentType.BOOLEAN,
+                ContentType.FUNCTION,
+                ContentType.NUMBER,
+                ContentType.OBJECT,
+                ContentType.STRING,
+                ContentType.UNDEFINED
                 );
     }
 
     @Test
     public void doesNotContainExtraElements() {
-        Assert.assertEquals(elements.size(), ResultContentType.values().length);
+        Assert.assertEquals(elements.size(), ContentType.values().length);
     }
 }

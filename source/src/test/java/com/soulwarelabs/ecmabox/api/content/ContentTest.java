@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api.result;
+package com.soulwarelabs.ecmabox.api.content;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,77 +28,72 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 
-@UnitTest(ResultContent.class)
+@UnitTest(Content.class)
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ResultContent.class, ResultContentType.class})
-public class ResultContentTest {
+@PrepareForTest({Content.class, ContentType.class})
+public class ContentTest {
 
-    private ResultContentType typeMock;
+    private ContentType typeMock;
     private Object valueMock;
 
     @Before
     public void prepareMocks() {
-        typeMock = PowerMockito.mock(ResultContentType.class);
+        typeMock = PowerMockito.mock(ContentType.class);
         valueMock = PowerMockito.mock(Object.class);
     }
 
     @Test
     public void castValueOnDemand() {
         final Double value = 42.0;
-        final ResultContent content = ResultContent.of(ResultContentType.NUMBER, value);
-        Assert.assertEquals(value,content.getValueAs(Double.class));
+        final Content content = Content.of(ContentType.NUMBER, value);
+        Assert.assertEquals(value,content.getValueAsDouble());
     }
 
     @Test
     public void copyValueIfList() {
         final List<Object> value = Collections.singletonList(new Object());
-        final ResultContent content = ResultContent.of(ResultContentType.ARRAY, value);
+        final Content content = Content.of(ContentType.ARRAY, value);
         Assert.assertEquals(value,content.getValue());
         Assert.assertFalse(value == content.getValue());
     }
 
     @Test
     public void createNewValidInstance() {
-        final ResultContent content = createNewInstanceWithMocks();
+        final Content content = createNewInstanceWithMocks();
         Assert.assertEquals(typeMock, content.getType());
         Assert.assertEquals(valueMock, content.getValue());
     }
 
     @Test
     public void createNewInstanceWithObjectTypeAndNullValue() {
-        ResultContent.of(ResultContentType.OBJECT, null);
+        Content.of(ContentType.OBJECT, null);
     }
 
     @Test
     public void createNewInstanceWithUndefinedTypeAndNullValue() {
-        ResultContent.of(ResultContentType.UNDEFINED, null);
+        Content.of(ContentType.UNDEFINED, null);
     }
 
     @Test(expected = ClassCastException.class)
     public void failToCastValueOnDemand() {
         final Double value = 42.0;
-        final ResultContent content = ResultContent.of(ResultContentType.NUMBER, value);
-        Assert.assertEquals("42.0", content.getValueAs(String.class));
+        final Content content = Content.of(ContentType.NUMBER, value);
+        Assert.assertEquals("42.0", content.getValueAsString());
     }
 
     @Test(expected = NullPointerException.class)
     public void failToCreateNewInstanceWithNullType() {
-        ResultContent.of(null, valueMock);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullValue() {
-        ResultContent.of(typeMock, null);
+        Content.of(null, valueMock);
     }
 
     @Test
     public void receiveUndefinedInstance() {
-        final ResultContent content = ResultContent.undefined();
-        Assert.assertEquals(ResultContentType.UNDEFINED, content.getType());
+        final Content content = Content.undefined();
+        Assert.assertEquals(ContentType.UNDEFINED, content.getType());
         Assert.assertNull(content.getValue());
     }
 
-    private ResultContent createNewInstanceWithMocks() {
-        return ResultContent.of(typeMock, valueMock);
+    private Content createNewInstanceWithMocks() {
+        return Content.of(typeMock, valueMock);
     }
 }

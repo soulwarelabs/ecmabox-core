@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.api.result;
+package com.soulwarelabs.ecmabox.api.content;
 
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Key;
@@ -27,7 +27,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
 @Public
 @Immutable
 @Key
-public enum ResultContentType {
+public enum ContentType {
 
     /**
      * Array object.
@@ -50,7 +50,7 @@ public enum ResultContentType {
     NUMBER,
 
     /**
-     * Generic object, including <code>null</code>.
+     * Composite generic object, including <code>null</code>.
      */
     OBJECT,
 

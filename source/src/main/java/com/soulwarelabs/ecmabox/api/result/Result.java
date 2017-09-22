@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.soulwarelabs.ecmabox.api.content.Content;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
@@ -30,9 +31,9 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  * <br/>
  * Contains a result of the specified invoice execution. Designed to be immutable.
  *
+ * @see Content
  * @see Invoice
  * @see Record
- * @see ResultContent
  * @see ResultTermination
  *
  * @author Ilia Gubarev
@@ -41,7 +42,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
 @ImmutableByContract
 public final class Result {
 
-    private final ResultContent content;
+    private final Content content;
     private final Invoice invoice;
     private final List<Record> records;
     private final ResultTermination termination;
@@ -54,12 +55,12 @@ public final class Result {
      * @param records log records produced during execution of the invoice.
      * @param termination execution result termination type.
      *
+     * @see Content
      * @see Invoice
      * @see Record
-     * @see ResultContent
      * @see ResultTermination
      */
-    public Result(final ResultContent content,
+    public Result(final Content content,
                   final Invoice invoice,
                   final List<Record> records,
                   final ResultTermination termination) {
@@ -78,9 +79,9 @@ public final class Result {
      *
      * @return execution result content.
      *
-     * @see ResultContent
+     * @see Content
      */
-    public ResultContent getContent() {
+    public Content getContent() {
         return content;
     }
 

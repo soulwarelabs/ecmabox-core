@@ -26,6 +26,7 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import com.soulwarelabs.ecmabox.api.content.Content;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -34,21 +35,21 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({
         Result.class,
-        ResultContent.class,
+        Content.class,
         Invoice.class,
         Record.class,
         ResultTermination.class
 })
 public class ResultTest {
 
-    private ResultContent contentMock;
+    private Content contentMock;
     private Invoice invoiceMock;
     private List<Record> recordMocks;
     private ResultTermination terminationMock;
 
     @Before
     public void prepareMocks() {
-        contentMock = PowerMockito.mock(ResultContent.class);
+        contentMock = PowerMockito.mock(Content.class);
         invoiceMock = PowerMockito.mock(Invoice.class);
         recordMocks = Collections.singletonList(PowerMockito.mock(Record.class));
         terminationMock = PowerMockito.mock(ResultTermination.class);
