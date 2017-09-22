@@ -40,7 +40,7 @@ public class RecordLevelTest {
                 RecordLevel.INFO,
                 RecordLevel.WARN,
                 RecordLevel.ERROR,
-                RecordLevel.FATAl
+                RecordLevel.FATAL
         );
     }
 

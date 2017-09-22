@@ -61,7 +61,7 @@ public enum RecordLevel {
     /**
      * Execution error, most possibly unrecoverable.
      */
-    FATAl(600);
+    FATAL(600);
 
     private final int precedence;
 
