@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -35,8 +36,17 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @PrepareForTest({Invoice.class, InvoiceBuilder.class})
 public class InvoiceBuilderTest {
 
-    private InvoiceBuilder builder;
+    private String description = "Test description";
+    private boolean restricted = true;
+    private String script = "1 + 1";
+    private boolean timeoutEnabled = true;
+    private long timeoutInMilliseconds = 42;
+    private String version = "2.0";
+
+    @Mock
     private Invoice invoiceMock;
+
+    private InvoiceBuilder builder;
 
     @Before
     public void prepareBuilder() {
@@ -45,7 +55,6 @@ public class InvoiceBuilderTest {
 
     @Before
     public void prepareInvoiceMock() throws Exception {
-        invoiceMock = PowerMockito.mock(Invoice.class);
         PowerMockito
                 .whenNew(Invoice.class)
                 .withAnyArguments()
@@ -54,13 +63,7 @@ public class InvoiceBuilderTest {
 
     @Test
     public void invokeInvoiceConstructorWithCustomProperties() throws Exception {
-        final String description = "Test description";
-        final boolean restricted = true;
         final Set<InvoiceRestriction> restrictions = Collections.singleton(InvoiceRestriction.EVAL);
-        final String script = "1 + 1";
-        final boolean timeoutEnabled = true;
-        final long timeoutInMilliseconds = 42;
-        final String version = "2.0";
         final Invoice invoice = builder
                 .description(description)
                 .restricted(restricted)
@@ -85,9 +88,9 @@ public class InvoiceBuilderTest {
     }
 
     @Test
-    public void invokeInvoiceConstructorWithDefaultProperties() throws Exception {
+    public void invokeInvoiceConstructorWhenCopyWithDefaultProperties() throws Exception {
         final String defaultScript = null;
-        final Invoice invoice = builder.build();
+        final Invoice invoice = builder.copy().build();
         Assert.assertEquals(invoiceMock, invoice);
         PowerMockito
                 .verifyNew(Invoice.class)

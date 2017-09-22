@@ -58,19 +58,57 @@ public final class InvoiceBuilder {
      */
     public static final String DEFAULT_VERSION = "1.0";
 
-    private String description = DEFAULT_DESCRIPTION;
-    private boolean restricted = DEFAULT_RESTRICTED;
-    private Set<InvoiceRestriction> restrictions = new HashSet<>();
-    private String script = null;
-    private boolean timeoutEnabled = DEFAULT_TIMEOUT_ENABLED;
-    private long timeoutInMilliseconds = DEFAULT_TIMEOUT_IN_MILLISECONDS;
-    private String version = DEFAULT_VERSION;
+    private String description;
+    private boolean restricted;
+    private Set<InvoiceRestriction> restrictions;
+    private String script;
+    private boolean timeoutEnabled;
+    private long timeoutInMilliseconds;
+    private String version;
 
     /**
      * Creates a new invoice builder.
      */
     public InvoiceBuilder() {
+        this.description = DEFAULT_DESCRIPTION;
+        this.restricted = DEFAULT_RESTRICTED;
+        this.restrictions = new HashSet<>();
+        this.script = null;
+        this.timeoutEnabled = DEFAULT_TIMEOUT_ENABLED;
+        this.timeoutInMilliseconds = DEFAULT_TIMEOUT_IN_MILLISECONDS;
+        this.version = DEFAULT_VERSION;
+    }
 
+    /**
+     * Creates a new invoice builder.
+     *
+     * @param invoice an existing invoice to be copied.
+     *
+     * @see Invoice
+     */
+    public InvoiceBuilder(final Invoice invoice) {
+        this.description = invoice.getDescription();
+        this.restricted = invoice.isRestricted();
+        this.restrictions = new HashSet<>(invoice.getRestrictions());
+        this.script = invoice.getScript();
+        this.timeoutEnabled = invoice.isTimeoutEnabled();
+        this.timeoutInMilliseconds = invoice.getTimeoutInMilliseconds();
+        this.version = invoice.getVersion();
+    }
+
+    /**
+     * Creates a new invoice builder.
+     *
+     * @param builder another invoice builder to be copied.
+     */
+    public InvoiceBuilder(final InvoiceBuilder builder) {
+        this.description = builder.description;
+        this.restricted = builder.restricted;
+        this.restrictions = new HashSet<>(builder.restrictions);
+        this.script = builder.script;
+        this.timeoutEnabled = builder.timeoutEnabled;
+        this.timeoutInMilliseconds = builder.timeoutInMilliseconds;
+        this.version = builder.version;
     }
 
     /**
@@ -167,6 +205,15 @@ public final class InvoiceBuilder {
                 timeoutInMilliseconds,
                 version
         );
+    }
+
+    /**
+     * Creates a copy of this builder.
+     *
+     * @return new invoice builder.
+     */
+    public InvoiceBuilder copy() {
+        return new InvoiceBuilder(this);
     }
 
     @Override
