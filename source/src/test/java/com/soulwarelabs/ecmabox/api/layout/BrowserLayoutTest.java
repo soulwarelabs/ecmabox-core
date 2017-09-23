@@ -21,6 +21,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -44,7 +45,7 @@ public class BrowserLayoutTest {
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final BrowserLayout layout = new BrowserLayout(
                 html,
                 typeMock,
@@ -56,7 +57,7 @@ public class BrowserLayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullHtml() {
+    public void failToCreateNewInstanceWithNullHtml() throws Exception {
         new BrowserLayout(
                 null,
                 typeMock,
@@ -65,7 +66,7 @@ public class BrowserLayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullType() {
+    public void failToCreateNewInstanceWithNullType() throws Exception {
         new BrowserLayout(
                 html,
                 null,
@@ -74,7 +75,7 @@ public class BrowserLayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullUrl() {
+    public void failToCreateNewInstanceWithNullUrl() throws Exception {
         new BrowserLayout(
                 html,
                 typeMock,

@@ -21,6 +21,7 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -37,27 +38,15 @@ public class InvoiceTest {
     private final long timeoutInMilliseconds = 42;
     private final String version = "1.0";
 
-    private Invoice createNewInstanceWithValidProperties() {
-        return new Invoice(
-                description,
-                restricted,
-                restrictions,
-                script,
-                timeoutEnabled,
-                timeoutInMilliseconds,
-                version
-        );
-    }
-
     @Test
-    public void copyRestrictionsOnGet() {
+    public void copyRestrictionsOnGet() throws Exception {
         final Invoice invoice = createNewInstanceWithValidProperties();
         Assert.assertEquals(restrictions, invoice.getRestrictions());
         Assert.assertFalse(restrictions == invoice.getRestrictions());
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final Invoice invoice = createNewInstanceWithValidProperties();
         Assert.assertEquals(description, invoice.getDescription());
         Assert.assertEquals(restricted, invoice.isRestricted());
@@ -69,7 +58,7 @@ public class InvoiceTest {
     }
 
     @Test
-    public void createNewValidInstanceWithNullDescription() {
+    public void createNewValidInstanceWithNullDescription() throws Exception {
         final Invoice invoice = new Invoice(
                 null,
                 restricted,
@@ -83,7 +72,7 @@ public class InvoiceTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullRestrictions() {
+    public void failToCreateNewInstanceWithNullRestrictions() throws Exception {
         new Invoice(
                 description,
                 restricted,
@@ -96,7 +85,7 @@ public class InvoiceTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void failToCreateNewInstanceWithNegativeTimeout() {
+    public void failToCreateNewInstanceWithNegativeTimeout() throws Exception {
         new Invoice(
                 description,
                 restricted,
@@ -109,7 +98,7 @@ public class InvoiceTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullScript() {
+    public void failToCreateNewInstanceWithNullScript() throws Exception {
         new Invoice(
                 description,
                 restricted,
@@ -122,7 +111,7 @@ public class InvoiceTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullVersion() {
+    public void failToCreateNewInstanceWithNullVersion() throws Exception {
         new Invoice(
                 description,
                 restricted,
@@ -131,6 +120,18 @@ public class InvoiceTest {
                 timeoutEnabled,
                 timeoutInMilliseconds,
                 null
+        );
+    }
+
+    private Invoice createNewInstanceWithValidProperties() {
+        return new Invoice(
+                description,
+                restricted,
+                restrictions,
+                script,
+                timeoutEnabled,
+                timeoutInMilliseconds,
+                version
         );
     }
 }

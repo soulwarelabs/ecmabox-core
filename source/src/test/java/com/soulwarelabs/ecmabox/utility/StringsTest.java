@@ -16,11 +16,13 @@
 package com.soulwarelabs.ecmabox.utility;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -48,7 +50,7 @@ public class StringsTest {
     }
 
     @Test
-    public void createStringRepresentationOfObject() {
+    public void createStringRepresentationOfObject() throws Exception {
         final String result = Strings.toString(objectMock);
         PowerMockito.verifyStatic(ToStringBuilder.class);
         Assert.assertSame(stringMock, result);

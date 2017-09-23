@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -33,7 +34,7 @@ public class ResultTerminationTest {
     private List<ResultTermination> elements;
 
     @Before
-    public void prepareElements() {
+    public void prepareElements() throws Exception {
         elements = Arrays.asList(
                 ResultTermination.EXCEPTION,
                 ResultTermination.SUCCESS,
@@ -42,7 +43,7 @@ public class ResultTerminationTest {
     }
 
     @Test
-    public void doesNotContainExtraElements() {
+    public void doesNotContainExtraElements() throws Exception {
         Assert.assertEquals(elements.size(), ResultTermination.values().length);
     }
 }

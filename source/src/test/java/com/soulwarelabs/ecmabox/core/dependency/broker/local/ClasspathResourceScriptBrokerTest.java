@@ -17,6 +17,7 @@ package com.soulwarelabs.ecmabox.core.dependency.broker.local;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.Mock;
 import org.powermock.modules.junit4.PowerMockRunner;
 

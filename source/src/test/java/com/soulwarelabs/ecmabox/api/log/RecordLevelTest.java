@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -33,7 +34,7 @@ public class RecordLevelTest {
     private List<RecordLevel> elements;
 
     @Before
-    public void prepareTypes() {
+    public void prepareElements() {
         elements = Arrays.asList(
                 RecordLevel.TRACE,
                 RecordLevel.DEBUG,
@@ -45,12 +46,12 @@ public class RecordLevelTest {
     }
 
     @Test
-    public void doesNotContainExtraElements() {
+    public void doesNotContainExtraElements() throws Exception {
         Assert.assertEquals(elements.size(), RecordLevel.values().length);
     }
 
     @Test
-    public void precedencesAreInOrder() {
+    public void precedencesAreInOrder() throws Exception {
         RecordLevel previous = null;
         for (final RecordLevel level : elements) {
             if (previous != null) {

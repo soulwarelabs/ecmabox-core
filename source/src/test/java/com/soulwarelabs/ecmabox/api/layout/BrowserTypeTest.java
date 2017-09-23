@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -33,12 +34,12 @@ public class BrowserTypeTest {
     private List<BrowserType> elements;
 
     @Before
-    public void prepareTypes() {
+    public void prepareElements() {
         elements = Collections.singletonList(BrowserType.DEFAULT);
     }
 
     @Test
-    public void doesNotContainExtraElements() {
+    public void doesNotContainExtraElements() throws Exception {
         Assert.assertEquals(elements.size(), BrowserType.values().length);
     }
 }

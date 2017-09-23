@@ -20,6 +20,7 @@ import java.time.Instant;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -39,7 +40,7 @@ public class RecordTest {
     private Instant whenOlder = when.minusMillis(42);
 
     @Test
-    public void createAndCompareTwoInstances() {
+    public void createAndCompareTwoInstances() throws Exception {
         final Record record = new Record(
                 content,
                 levelMock,
@@ -54,7 +55,7 @@ public class RecordTest {
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final Record record = new Record(
                 content,
                 levelMock,
@@ -66,7 +67,7 @@ public class RecordTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullContent() {
+    public void failToCreateNewInstanceWithNullContent() throws Exception {
         new Record(
                 null,
                 levelMock,
@@ -75,7 +76,7 @@ public class RecordTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullLevel() {
+    public void failToCreateNewInstanceWithNullLevel() throws Exception {
         new Record(
                 content,
                 null,
@@ -84,7 +85,7 @@ public class RecordTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullWhen() {
+    public void failToCreateNewInstanceWithNullWhen() throws Exception {
         new Record(
                 content,
                 levelMock,

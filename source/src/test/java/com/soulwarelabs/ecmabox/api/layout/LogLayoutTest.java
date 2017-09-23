@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -41,7 +42,7 @@ public class LogLayoutTest {
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final LogLayout layout = new LogLayout(
                 enabledMock,
                 levelMock
@@ -51,7 +52,7 @@ public class LogLayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullLevel() {
+    public void failToCreateNewInstanceWithNullLevel() throws Exception {
         new LogLayout(
                 enabledMock,
                 null

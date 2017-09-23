@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -46,14 +47,14 @@ public class DependencyTest {
     }
 
     @Test
-    public void createNewValidInstanceForCdn() {
+    public void createNewValidInstanceForCdn() throws Exception {
         final Dependency dependency = Dependency.cdn(cdnResourceValid);
         Assert.assertEquals(DependencyOrigin.CDN, dependency.getOrigin());
         Assert.assertEquals(cdnResourceValid, dependency.getResource());
     }
 
     @Test
-    public void createNewValidInstanceForNpm() {
+    public void createNewValidInstanceForNpm() throws Exception {
         final String npmResourceValid = "resource:id:2.3";
         final Dependency dependency = Dependency.npm(npmResourceValid);
         Assert.assertEquals(DependencyOrigin.NPM, dependency.getOrigin());
@@ -61,17 +62,17 @@ public class DependencyTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullOrigin() {
+    public void failToCreateNewInstanceWithNullOrigin() throws Exception {
         Dependency.of(cdnResourceInvalid, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void failToCreateNewInstanceForCdnWithInvalidUrl() {
+    public void failToCreateNewInstanceForCdnWithInvalidUrl() throws Exception {
         Dependency.cdn(cdnResourceInvalid);
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceForCdnWithNullUrl() {
+    public void failToCreateNewInstanceForCdnWithNullUrl() throws Exception {
         Dependency.cdn(null);
     }
 }

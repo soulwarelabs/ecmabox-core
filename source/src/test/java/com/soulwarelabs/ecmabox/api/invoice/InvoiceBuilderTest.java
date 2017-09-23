@@ -24,6 +24,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
@@ -50,7 +51,7 @@ public class InvoiceBuilderTest {
     private InvoiceBuilder builder;
 
     @Before
-    public void prepareBuilder() {
+    public void prepareBuilder() throws Exception {
         this.builder = new InvoiceBuilder();
     }
 
@@ -105,27 +106,28 @@ public class InvoiceBuilderTest {
                         ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_VERSION)
                 );
     }
+
     @Ignore
     @Test
-    public void createCopy() {
+    public void createCopy() throws Exception {
         // TODO: implement this test
     }
 
     @Ignore
     @Test
-    public void createNewInstanceFromInvoice() {
+    public void createNewInstanceFromInvoice() throws Exception {
         // TODO: implement this test
     }
 
     @Ignore
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceFromNullBuilder() {
+    public void failToCreateNewInstanceFromNullBuilder() throws Exception {
         // TODO: implement this test
     }
 
     @Ignore
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceFromNullInvoice() {
+    public void failToCreateNewInstanceFromNullInvoice() throws Exception {
         // TODO: implement this test
     }
 }

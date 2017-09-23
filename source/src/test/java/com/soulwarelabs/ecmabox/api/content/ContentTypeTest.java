@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -36,7 +37,7 @@ public class ContentTypeTest {
     // TODO: add/verify unit tests
 
     @Before
-    public void prepareTypes() {
+    public void prepareElements() {
         elements = Arrays.asList(
                 ContentType.ARRAY,
                 ContentType.BOOLEAN,
@@ -45,7 +46,7 @@ public class ContentTypeTest {
                 ContentType.OBJECT,
                 ContentType.STRING,
                 ContentType.UNDEFINED
-                );
+        );
     }
 
     @Ignore
@@ -61,7 +62,7 @@ public class ContentTypeTest {
     }
 
     @Test
-    public void doesNotContainExtraElements() {
+    public void doesNotContainExtraElements() throws Exception {
         Assert.assertEquals(elements.size(), ContentType.values().length);
     }
 

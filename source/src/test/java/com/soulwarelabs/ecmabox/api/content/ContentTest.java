@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -37,14 +38,14 @@ public class ContentTest {
     // TODO: add/verify unit tests
 
     @Test
-    public void castValueOnDemand() {
+    public void castValueOnDemand() throws Exception {
         final Double value = 42.0;
         final Content content = Content.of(value);
-        Assert.assertEquals(value,content.getValueAsDouble());
+        Assert.assertEquals(value, content.getValueAsDouble());
     }
 
     @Test
-    public void copyValueIfList() {
+    public void copyValueIfList() throws Exception {
         final List<Object> value = Collections.singletonList(new Object());
         final Content content = Content.of(value);
         Assert.assertEquals(value, content.getValue());
@@ -53,31 +54,31 @@ public class ContentTest {
 
     @Ignore
     @Test
-    public void copyValueIfMap() {
+    public void copyValueIfMap() throws Exception {
         // TODO: implement this test
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final Content content = createNewInstanceWithSampleValue();
         Assert.assertEquals(ContentType.STRING, content.getType());
         Assert.assertEquals(sampleValue, content.getValue());
     }
 
     @Test
-    public void createNewInstanceWithObjectTypeAndNullValue() {
+    public void createNewInstanceWithObjectTypeAndNullValue() throws Exception {
         Content.of(null);
     }
 
     @Test(expected = ClassCastException.class)
-    public void failToCastValueOnDemand() {
+    public void failToCastValueOnDemand() throws Exception {
         final Double value = 42.0;
         final Content content = Content.of(value);
         Assert.assertEquals("42.0", content.getValueAsString());
     }
 
     @Test
-    public void validUndefinedInstance() {
+    public void validUndefinedInstance() throws Exception {
         final Content content = Content.undefined();
         Assert.assertEquals(ContentType.UNDEFINED, content.getType());
         Assert.assertNull(content.getValue());

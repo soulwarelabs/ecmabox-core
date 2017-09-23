@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -33,7 +34,7 @@ public class DependencyOriginTest {
     private List<DependencyOrigin> elements;
 
     @Before
-    public void prepareTypes() {
+    public void prepareElements() {
         elements = Arrays.asList(
                 DependencyOrigin.CDN,
                 DependencyOrigin.NPM
@@ -41,7 +42,7 @@ public class DependencyOriginTest {
     }
 
     @Test
-    public void doesNotContainExtraElements() {
+    public void doesNotContainExtraElements() throws Exception {
         Assert.assertEquals(elements.size(), DependencyOrigin.values().length);
     }
 }

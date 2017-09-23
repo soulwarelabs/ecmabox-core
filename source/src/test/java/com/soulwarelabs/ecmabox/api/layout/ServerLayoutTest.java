@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -38,13 +39,13 @@ public class ServerLayoutTest {
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final ServerLayout layout = new ServerLayout(typeMock);
         Assert.assertEquals(typeMock, layout.getType());
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullType() {
+    public void failToCreateNewInstanceWithNullType() throws Exception {
         new ServerLayout(null);
     }
 }

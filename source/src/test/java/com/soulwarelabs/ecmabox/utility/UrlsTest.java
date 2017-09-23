@@ -23,6 +23,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -53,39 +54,39 @@ public class UrlsTest {
     }
 
     @Test
-    public void checkInvalidUrl() {
+    public void checkInvalidUrl() throws Exception {
         Assert.assertFalse(Urls.validUrl(specificationInvalid));
     }
 
     @Test
-    public void checkValidUrl() {
+    public void checkValidUrl() throws Exception {
         Assert.assertTrue(Urls.validUrl(specificationValid));
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToParseNullUrl() {
+    public void failToParseNullUrl() throws Exception {
         Urls.parseSafely(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void failToParseInvalidUrl() {
+    public void failToParseInvalidUrl() throws Exception {
         Urls.parse(specificationInvalid);
     }
 
     @Test
-    public void parseValidUrl() {
+    public void parseValidUrl() throws Exception {
         final URL url = Urls.parse(specificationValid);
         Assert.assertEquals(urlMock, url);
     }
 
     @Test
-    public void parseInvalidUrlOptional() {
+    public void parseInvalidUrlOptional() throws Exception {
         final Optional<URL> url = Urls.parseSafely(specificationInvalid);
         Assert.assertFalse(url.isPresent());
     }
 
     @Test
-    public void parseValidUrlOptional() {
+    public void parseValidUrlOptional() throws Exception {
         final Optional<URL> url = Urls.parseSafely(specificationValid);
         Assert.assertTrue(url.isPresent());
         Assert.assertEquals(urlMock, url.get());

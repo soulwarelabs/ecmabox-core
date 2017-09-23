@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -68,7 +69,7 @@ public class LayoutTest {
     }
 
     @Test
-    public void copyDependenciesOnGet() {
+    public void copyDependenciesOnGet() throws Exception {
         final Layout layout = new Layout(
                 browserLayoutMock,
                 customDependencyResolverMock,
@@ -82,7 +83,7 @@ public class LayoutTest {
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final Layout layout = new Layout(
                 browserLayoutMock,
                 customDependencyResolverMock,
@@ -100,7 +101,7 @@ public class LayoutTest {
     }
 
     @Test
-    public void createNewInstanceWithNullResolver() {
+    public void createNewInstanceWithNullResolver() throws Exception {
         final Layout layout = new Layout(
                 browserLayoutMock,
                 null,
@@ -113,7 +114,7 @@ public class LayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullBrowserLayout() {
+    public void failToCreateNewInstanceWithNullBrowserLayout() throws Exception {
         new Layout(
                 null,
                 customDependencyResolverMock,
@@ -125,7 +126,7 @@ public class LayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullDependencies() {
+    public void failToCreateNewInstanceWithNullDependencies() throws Exception {
         new Layout(
                 browserLayoutMock,
                 customDependencyResolverMock,
@@ -137,7 +138,7 @@ public class LayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullEnvironment() {
+    public void failToCreateNewInstanceWithNullEnvironment() throws Exception {
         new Layout(
                 browserLayoutMock,
                 customDependencyResolverMock,
@@ -149,7 +150,7 @@ public class LayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullLogging() {
+    public void failToCreateNewInstanceWithNullLogging() throws Exception {
         new Layout(
                 browserLayoutMock,
                 customDependencyResolverMock,
@@ -161,7 +162,7 @@ public class LayoutTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullServerLayout() {
+    public void failToCreateNewInstanceWithNullServerLayout() throws Exception {
         new Layout(
                 browserLayoutMock,
                 customDependencyResolverMock,

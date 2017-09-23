@@ -19,6 +19,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -48,19 +49,19 @@ public class BaseResourceScriptBrokerTest {
     }
 
     @Test
-    public void createNewValidInstanceWithFailover() {
+    public void createNewValidInstanceWithFailover() throws Exception {
         final BaseResourceScriptBroker broker = createNewInstanceWhichSucceeds(failoverMock);
         Assert.assertNotNull(broker);
     }
 
     @Test
-    public void createNewValidInstanceWithoutFailover() {
+    public void createNewValidInstanceWithoutFailover() throws Exception {
         final BaseResourceScriptBroker broker = createNewInstanceWhichSucceeds(null);
         Assert.assertNotNull(broker);
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToReceiveNullResource() {
+    public void failToReceiveNullResource() throws Exception {
         final BaseResourceScriptBroker broker = createNewInstanceWhichSucceeds(failoverMock);
         broker.receive(null);
     }

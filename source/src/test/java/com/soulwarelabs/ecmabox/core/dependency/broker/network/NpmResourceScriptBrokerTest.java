@@ -17,6 +17,7 @@ package com.soulwarelabs.ecmabox.core.dependency.broker.network;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;

@@ -22,6 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -56,13 +57,13 @@ public class ResultTest {
     }
 
     @Test
-    public void copyRecordsOnGet() {
+    public void copyRecordsOnGet() throws Exception {
         final Result result = createInstanceWithMocks();
         Assert.assertFalse(recordMocks == result.getRecords());
     }
 
     @Test
-    public void createNewValidInstance() {
+    public void createNewValidInstance() throws Exception {
         final Result result = createInstanceWithMocks();
         Assert.assertEquals(contentMock, result.getContent());
         Assert.assertEquals(invoiceMock, result.getInvoice());
@@ -71,7 +72,7 @@ public class ResultTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullContent() {
+    public void failToCreateNewInstanceWithNullContent() throws Exception {
         new Result(
                 null,
                 invoiceMock,
@@ -81,7 +82,7 @@ public class ResultTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullInvoice() {
+    public void failToCreateNewInstanceWithNullInvoice() throws Exception {
         new Result(
                 contentMock,
                 null,
@@ -91,7 +92,7 @@ public class ResultTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullRecordList() {
+    public void failToCreateNewInstanceWithNullRecordList() throws Exception {
         new Result(
                 contentMock,
                 invoiceMock,
@@ -101,7 +102,7 @@ public class ResultTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void failToCreateNewInstanceWithNullTermination() {
+    public void failToCreateNewInstanceWithNullTermination() throws Exception {
         new Result(
                 contentMock,
                 invoiceMock,
