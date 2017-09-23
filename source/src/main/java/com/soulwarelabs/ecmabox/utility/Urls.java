@@ -48,10 +48,10 @@ public final class Urls {
     }
 
     /**
-     * Creates a new URL from its specification.
+     * Creates a new URL from its specification if possible.
      *
      * @param specification URL text specification.
-     * @return new optional URL.
+     * @return new optional URL (optional).
      *
      * @see URL
      */

@@ -17,6 +17,7 @@ package com.soulwarelabs.ecmabox.utility;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Private;
 import com.soulwarelabs.ecmabox.convention.Static;
 
@@ -35,7 +36,7 @@ public final class Strings {
      * @param object object to be presented as a string (optional).
      * @return string representation of the object.
      */
-    public static String toString(final Object object) {
+    public static String toString(final @Nullable Object object) {
         return ToStringBuilder.reflectionToString(object);
     }
 
