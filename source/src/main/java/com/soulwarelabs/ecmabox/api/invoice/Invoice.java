@@ -20,6 +20,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.soulwarelabs.ecmabox.convention.Immutable;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
 import com.soulwarelabs.ecmabox.utility.Strings;
 
@@ -37,13 +38,15 @@ import com.soulwarelabs.ecmabox.utility.Strings;
 @Immutable
 public final class Invoice {
 
-    private final String description;
     private final boolean restricted;
     private final Set<InvoiceRestriction> restrictions;
     private final String script;
     private final boolean timeoutEnabled;
     private final long timeoutInMilliseconds;
     private final String version;
+
+    @Nullable
+    private final String description;
 
     /**
      * Creates a new invoice.
@@ -56,7 +59,7 @@ public final class Invoice {
      * @param timeoutInMilliseconds execution time limit value in milliseconds (non-negative).
      * @param version invoice API version for further back-compatibility.
      */
-    public Invoice(final String description,
+    public Invoice(final @Nullable String description,
                    final boolean restricted,
                    final Set<InvoiceRestriction> restrictions,
                    final String script,
@@ -82,10 +85,11 @@ public final class Invoice {
     }
 
     /**
-     * Gets a brief description of this invoice (optional).
+     * Gets a brief description of this invoice if any.
      *
-     * @return invoice description or <code>null</code>.
+     * @return invoice description (optional).
      */
+    @Nullable
     public String getDescription() {
         return description;
     }

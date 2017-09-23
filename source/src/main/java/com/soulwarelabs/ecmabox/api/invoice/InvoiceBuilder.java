@@ -16,9 +16,11 @@
 package com.soulwarelabs.ecmabox.api.invoice;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import com.soulwarelabs.ecmabox.convention.Builder;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
 import com.soulwarelabs.ecmabox.utility.Strings;
 
@@ -58,13 +60,15 @@ public final class InvoiceBuilder {
      */
     public static final String DEFAULT_VERSION = "1.0";
 
-    private String description;
     private boolean restricted;
     private Set<InvoiceRestriction> restrictions;
     private String script;
     private boolean timeoutEnabled;
     private long timeoutInMilliseconds;
     private String version;
+
+    @Nullable
+    private String description;
 
     /**
      * Creates a new invoice builder.
@@ -87,6 +91,7 @@ public final class InvoiceBuilder {
      * @see Invoice
      */
     public InvoiceBuilder(final Invoice invoice) {
+        Objects.requireNonNull(invoice, "Invoice cannot be null");
         this.description = invoice.getDescription();
         this.restricted = invoice.isRestricted();
         this.restrictions = new HashSet<>(invoice.getRestrictions());
@@ -102,6 +107,7 @@ public final class InvoiceBuilder {
      * @param builder another invoice builder to be copied.
      */
     public InvoiceBuilder(final InvoiceBuilder builder) {
+        Objects.requireNonNull(builder, "Invoice builder cannot be null");
         this.description = builder.description;
         this.restricted = builder.restricted;
         this.restrictions = new HashSet<>(builder.restrictions);
@@ -117,7 +123,7 @@ public final class InvoiceBuilder {
      * @param description brief invoice description (optional).
      * @return this invoice builder.
      */
-    public InvoiceBuilder description(final String description) {
+    public InvoiceBuilder description(final @Nullable String description) {
         this.description = description;
         return this;
     }
