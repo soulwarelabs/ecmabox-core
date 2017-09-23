@@ -95,14 +95,9 @@ public final class InstanceBuilder<T> {
         try {
             final Method method = instantiationType.getMethod(instantiationMethod, Object[].class);
             final Object instance = method.invoke(null, (Object) arguments.toArray());
-            return cast(instance);
+            return Casts.cast(instance);
         } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
             throw new RuntimeException("Target type cannot be instantiated", e);
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    private T cast(final Object instance) {
-        return (T) instance;
     }
 }
