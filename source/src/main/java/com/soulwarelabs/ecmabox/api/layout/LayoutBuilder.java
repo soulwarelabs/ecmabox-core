@@ -22,6 +22,7 @@ import java.util.Objects;
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.api.log.RecordLevel;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.utility.Strings;
 import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.convention.Builder;
@@ -82,22 +83,69 @@ public final class LayoutBuilder {
         DEFAULT_SERVER_LAYOUT = new ServerLayout(ServerType.DEFAULT);
     }
 
-    private BrowserLayout browserLayout = DEFAULT_BROWSER_LAYOUT;
-    private DependencyResolver customDependencyResolver = null;
-    private List<Dependency> dependencies = new ArrayList<>();
-    private EnvironmentType environmentType = DEFAULT_ENVIRONMENT_TYPE;
-    private LogLayout logLayout = DEFAULT_LOG_LAYOUT;
-    private ServerLayout serverLayout = DEFAULT_SERVER_LAYOUT;
+    private List<Dependency> dependencies;
+    private EnvironmentType environmentType;
+    private LogLayout logLayout;
+
+    @Nullable
+    private DependencyResolver customDependencyResolver;
+
+    @Nullable
+    private BrowserLayout browserLayout;
+
+    @Nullable
+    private ServerLayout serverLayout;
+
+    /**
+     * Create a new layout builder.
+     */
+    public LayoutBuilder() {
+        dependencies = new ArrayList<>();
+        environmentType = DEFAULT_ENVIRONMENT_TYPE;
+        logLayout = DEFAULT_LOG_LAYOUT;
+    }
+
+    /**
+     * Create a new layout builder.
+     *
+     * @param layout layout to be copied.
+     *
+     * @see Layout
+     */
+    public LayoutBuilder(final Layout layout) {
+        Objects.requireNonNull(layout, "Layout cannot be null");
+        this.browserLayout = layout.getBrowserLayout();
+        this.customDependencyResolver = layout.getCustomDependencyResolver();
+        this.dependencies = new ArrayList<>(layout.getDependencies());
+        this.environmentType = layout.getEnvironmentType();
+        this.logLayout = layout.getLogLayout();
+        this.serverLayout = layout.getServerLayout();
+    }
+
+    /**
+     * Create a new layout builder.
+     *
+     * @param builder layout builder to be copied.
+     */
+    public LayoutBuilder(final LayoutBuilder builder) {
+        Objects.requireNonNull(builder, "Layout builder cannot be null");
+        this.browserLayout = builder.browserLayout;
+        this.customDependencyResolver = builder.customDependencyResolver;
+        this.dependencies = new ArrayList<>(builder.dependencies);
+        this.environmentType = builder.environmentType;
+        this.logLayout = builder.logLayout;
+        this.serverLayout = builder.serverLayout;
+    }
 
     /**
      * Sets a browser layout configuration
      *
-     * @param browserLayout browser layout configuration.
+     * @param browserLayout browser layout configuration (optional).
      * @return this layout builder.
      *
      * @see BrowserLayout
      */
-    public LayoutBuilder browserLayout(final BrowserLayout browserLayout) {
+    public LayoutBuilder browserLayout(final @Nullable BrowserLayout browserLayout) {
         this.browserLayout = browserLayout;
         return this;
     }
@@ -105,12 +153,12 @@ public final class LayoutBuilder {
     /**
      * Sets a custom dependency resolver.
      *
-     * @param customDependencyResolver custom dependency resolver.
+     * @param customDependencyResolver custom dependency resolver (optional).
      * @return this layout builder.
      *
      * @see DependencyResolver
      */
-    public LayoutBuilder customDependencyResolver(final DependencyResolver customDependencyResolver) {
+    public LayoutBuilder customDependencyResolver(final @Nullable DependencyResolver customDependencyResolver) {
         this.customDependencyResolver = customDependencyResolver;
         return this;
     }
@@ -158,12 +206,12 @@ public final class LayoutBuilder {
     /**
      * Sets a server layout configuration.
      *
-     * @param serverLayout server layout.
+     * @param serverLayout server layout (optional).
      * @return this layout builder.
      *
      * @see ServerLayout
      */
-    public LayoutBuilder serverLayout(final ServerLayout serverLayout) {
+    public LayoutBuilder serverLayout(final @Nullable ServerLayout serverLayout) {
         this.serverLayout = serverLayout;
         return this;
     }
@@ -184,6 +232,15 @@ public final class LayoutBuilder {
                 logLayout,
                 serverLayout
         );
+    }
+
+    /**
+     * Create a new copy of this builder.
+     *
+     * @return copy of this builder.
+     */
+    public LayoutBuilder copy() {
+        return new LayoutBuilder(this);
     }
 
     @Override

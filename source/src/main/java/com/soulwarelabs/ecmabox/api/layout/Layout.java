@@ -22,6 +22,7 @@ import java.util.Objects;
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.convention.Immutable;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
 import com.soulwarelabs.ecmabox.utility.Strings;
 
@@ -41,22 +42,28 @@ import com.soulwarelabs.ecmabox.utility.Strings;
 @Immutable
 public final class Layout {
 
-    private final BrowserLayout browserLayout;
-    private final DependencyResolver customDependencyResolver;
     private final List<Dependency> dependencies;
     private final EnvironmentType environmentType;
     private final LogLayout logLayout;
+
+    @Nullable
+    private final BrowserLayout browserLayout;
+
+    @Nullable
+    private final DependencyResolver customDependencyResolver;
+
+    @Nullable
     private final ServerLayout serverLayout;
 
     /**
      * Creates a new sandbox layout configuration.
      *
-     * @param browserLayout browser layout configuration.
+     * @param browserLayout browser layout configuration (optional).
      * @param customDependencyResolver custom dependency resolver to be used.
      * @param dependencies list of dependencies required by this layout.
      * @param environmentType sandbox environment type.
      * @param logLayout logging layout configuration.
-     * @param serverLayout server layout configuration.
+     * @param serverLayout server layout configuration (optional).
      *
      * @see BrowserLayout
      * @see Dependency
@@ -65,12 +72,12 @@ public final class Layout {
      * @see LogLayout
      * @see ServerLayout
      */
-    public Layout(final BrowserLayout browserLayout,
-                  final DependencyResolver customDependencyResolver,
+    public Layout(final @Nullable BrowserLayout browserLayout,
+                  final @Nullable DependencyResolver customDependencyResolver,
                   final List<Dependency> dependencies,
                   final EnvironmentType environmentType,
                   final LogLayout logLayout,
-                  final ServerLayout serverLayout) {
+                  final @Nullable ServerLayout serverLayout) {
         this.browserLayout = browserLayout;
         this.customDependencyResolver = customDependencyResolver;
         Objects.requireNonNull(dependencies, "Required dependencies cannot be null");
@@ -84,23 +91,25 @@ public final class Layout {
     }
 
     /**
-     * Gets a browser layout configuration.
+     * Gets a browser layout configuration if any.
      *
-     * @return browser layout configuration.
+     * @return browser layout configuration (optional).
      *
      * @see BrowserLayout
      */
+    @Nullable
     public BrowserLayout getBrowserLayout() {
         return browserLayout;
     }
 
     /**
-     * Gets a custom dependency resolver to be used.
+     * Gets a custom dependency resolver to be used if any.
      *
-     * @return custom dependency resolver
+     * @return custom dependency resolver (optional).
      *
      * @see DependencyResolver
      */
+    @Nullable
     public DependencyResolver getCustomDependencyResolver() {
         return customDependencyResolver;
     }
@@ -139,12 +148,13 @@ public final class Layout {
     }
 
     /**
-     * Gets a server layout configuration.
+     * Gets a server layout configuration if any.
      *
-     * @return server layout configuration.
+     * @return server layout configuration (optional).
      *
      * @see ServerLayout
      */
+    @Nullable
     public ServerLayout getServerLayout() {
         return serverLayout;
     }
