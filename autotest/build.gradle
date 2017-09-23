@@ -24,7 +24,9 @@ dependencies {
 
     // @formatter:off (required to keep the list of dependencies as a table)
     
-    compile     project(path: ':ecmabox-core')
+    compile         project(path: ':ecmabox-core')
+
+    testCompile     group: 'junit',                     name: 'junit',                      version: '4.12'
 
     // @formatter:on
 }
