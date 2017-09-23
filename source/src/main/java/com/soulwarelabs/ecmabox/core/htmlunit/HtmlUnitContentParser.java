@@ -52,7 +52,7 @@ public final class HtmlUnitContentParser implements ContentParser {
             case BOOLEAN:
             case NUMBER:
             case STRING:
-                return Content.of(type, raw);
+                return Content.of(raw);
             case UNDEFINED:
                 return Content.undefined();
             case ARRAY:
@@ -71,17 +71,17 @@ public final class HtmlUnitContentParser implements ContentParser {
         for (final Object rawElement : rawArray) {
             value.add(parse(rawElement));
         }
-        return Content.of(ContentType.ARRAY, value);
+        return Content.of(value);
     }
 
     private Content parseRawAsNativeFunction(final Object raw) {
         final String value = raw.toString().replace("\n", "").trim();
-        return Content.of(ContentType.FUNCTION, value);
+        return Content.of(value);
     }
 
     private Content parseRawAsNativeObject(final @Nullable Object raw) {
         if (raw == null) {
-            return Content.of(ContentType.OBJECT, null);
+            return Content.nullObject();
         }
         final Map<String, Content> value = new HashMap<>();
         final NativeObject rawObject = (NativeObject) raw;
@@ -93,7 +93,7 @@ public final class HtmlUnitContentParser implements ContentParser {
                 value.put(key, parsedValue);
             }
         }
-        return Content.of(ContentType.OBJECT, value);
+        return Content.of(value);
     }
 
     private ContentType type(final @Nullable Object raw) {

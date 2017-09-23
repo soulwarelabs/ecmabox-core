@@ -15,12 +15,19 @@
  */
 package com.soulwarelabs.ecmabox.api.content;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import com.soulwarelabs.ecmabox.api.content.function.FunctionDescriptor;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Key;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
 
 /**
- * Type of invoice execution result content.
+ * Type of invoice execution content.
  *
  * @author Ilia Gubarev
  */
@@ -30,37 +37,94 @@ import com.soulwarelabs.ecmabox.convention.Public;
 public enum ContentType {
 
     /**
-     * Array object.
+     * Array object. Represented by {@link java.util.List}.
      */
-    ARRAY,
+    ARRAY(List.class),
 
     /**
-     * Boolean object (<code>true</code> or <code>false</code>).
+     * Boolean object. Represented by {@link Boolean}.
      */
-    BOOLEAN,
+    BOOLEAN(Boolean.class),
 
     /**
-     * Native ECMA Function.
+     * ECMA function object. Represented by {@link FunctionDescriptor}.
      */
-    FUNCTION,
+    FUNCTION(FunctionDescriptor.class),
 
     /**
-     * Numeric object.
+     * Numeric object. Represented by {@link Double}.
      */
-    NUMBER,
+    NUMBER(Double.class),
 
     /**
-     * Composite generic object, including <code>null</code>.
+     * Generic composite object, including <code>null</code>. Represented by {@link java.util.Map}.
      */
-    OBJECT,
+    OBJECT(Map.class),
 
     /**
-     * Character sequence.
+     * Character sequence. Represented by {@link String}.
      */
-    STRING,
+    STRING(String.class),
 
     /**
      * No return object available.
      */
-    UNDEFINED
+    UNDEFINED(null);
+
+    private static final Collection<ContentType> TYPES = Arrays.asList(values());
+
+    /**
+     * Gets the type of a specified content value.
+     *
+     * @param value content value.
+     * @return type of the value.
+     */
+    public static ContentType of(final @Nullable Object value) {
+        if (value == null) {
+            return OBJECT;
+        }
+        final Class<?> valueClass = value.getClass();
+        for (final ContentType type : TYPES) {
+            if (type.represents(valueClass)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Unknown content value type");
+    }
+
+    @Nullable
+    private final Class<?> javaType;
+
+    ContentType(final @Nullable Class<?> javaType) {
+        this.javaType = javaType;
+    }
+
+    /**
+     * Gets a Java class/interface which represents this content type if any.
+     *
+     * @return Java type (optional).
+     */
+    @Nullable
+    public Class<?> getJavaType() {
+        return javaType;
+    }
+
+    /**
+     * Checks if any Java type is defined for this type.
+     *
+     * @return <code>true</code> if Java type is defined.
+     */
+    public boolean isJavaTypeDefined() {
+        return javaType != null;
+    }
+
+    /**
+     * Checks if this type represents the specified Java type.
+     *
+     * @param type Java type to be checked.
+     * @return <code>true</code> if this type represents the specified Java type.
+     */
+    public boolean represents(final Class<?> type) {
+        return javaType != null && javaType.isAssignableFrom(type);
+    }
 }

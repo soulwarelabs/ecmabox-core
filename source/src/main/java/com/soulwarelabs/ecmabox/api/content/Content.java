@@ -19,10 +19,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
+import com.soulwarelabs.ecmabox.api.content.function.FunctionDescriptor;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
+import com.soulwarelabs.ecmabox.utility.Casts;
 import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
@@ -39,16 +41,21 @@ public final class Content {
     /**
      * Creates a new result content.
      *
-     * @param type type of content value.
      * @param value execution result value (optional).
      * @return result content.
-     *
-     * @see ContentType
      */
-    public static Content of(final ContentType type,
-                             final Object value) {
-        Objects.requireNonNull(type, "Result content type cannot be null");
+    public static Content of(final @Nullable Object value) {
+        final ContentType type = ContentType.of(value);
         return new Content(type, value);
+    }
+
+    /**
+     * Gets a predefined content of null.
+     *
+     * @return result content.
+     */
+    public static Content nullObject() {
+        return NULL;
     }
 
     /**
@@ -60,9 +67,12 @@ public final class Content {
         return UNDEFINED;
     }
 
+    private static final Content NULL = new Content(ContentType.OBJECT, null);
     private static final Content UNDEFINED = new Content(ContentType.UNDEFINED, null);
 
     private final ContentType type;
+
+    @Nullable
     private final Object value;
 
     private Content(final ContentType type,
@@ -96,8 +106,9 @@ public final class Content {
      *
      * @return content value.
      */
+    @Nullable
     public Object getValue() {
-        return copyValueIfRequired();
+        return copyAndCastValueIfRequired();
     }
 
     /**
@@ -105,8 +116,9 @@ public final class Content {
      *
      * @return content value.
      */
+    @Nullable
     public Boolean getValueAsBoolean() {
-        return (Boolean) copyValueIfRequired();
+        return copyAndCastValueIfRequired();
     }
 
     /**
@@ -114,8 +126,21 @@ public final class Content {
      *
      * @return content value.
      */
+    @Nullable
     public Double getValueAsDouble() {
-        return (Double) copyValueIfRequired();
+        return copyAndCastValueIfRequired();
+    }
+
+    /**
+     * Gets the value of this content (optional).
+     *
+     * @return content value.
+     *
+     * @see FunctionDescriptor
+     */
+    @Nullable
+    public FunctionDescriptor getValueAsFunctionDescriptor() {
+        return copyAndCastValueIfRequired();
     }
 
     /**
@@ -123,9 +148,9 @@ public final class Content {
      *
      * @return content value.
      */
-    @SuppressWarnings("unchecked")
+    @Nullable
     public List<Content> getValueAsList() {
-        return (List<Content>) copyValueIfRequired();
+        return copyAndCastValueIfRequired();
     }
 
     /**
@@ -133,9 +158,9 @@ public final class Content {
      *
      * @return content value.
      */
-    @SuppressWarnings("unchecked")
+    @Nullable
     public Map<String, Content> getValueAsMap() {
-        return (Map<String, Content>) copyValueIfRequired();
+        return copyAndCastValueIfRequired();
     }
 
     /**
@@ -143,8 +168,9 @@ public final class Content {
      *
      * @return content value.
      */
+    @Nullable
     public String getValueAsString() {
-        return (String) copyValueIfRequired();
+        return copyAndCastValueIfRequired();
     }
 
     @Override
@@ -152,16 +178,16 @@ public final class Content {
         return Strings.toString(this);
     }
 
-    private Object copyValueIfRequired() {
+    private <T> T copyAndCastValueIfRequired() {
         if (value == null) {
             return null;
         }
-        if (value instanceof List<?>) {
-            return new ArrayList<>((List<?>) value);
+        if (type == ContentType.ARRAY) {
+            return Casts.cast(new ArrayList<>((List<?>) value));
         }
-        if (value instanceof Map<?, ?>) {
-            return new HashMap<>((Map<?, ?>) value);
+        if (type == ContentType.OBJECT) {
+            return Casts.cast(new HashMap<>((Map<?, ?>) value));
         }
-        return value;
+        return Casts.cast(value);
     }
 }

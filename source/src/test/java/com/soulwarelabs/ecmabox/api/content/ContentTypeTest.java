@@ -32,6 +32,8 @@ public class ContentTypeTest {
 
     private List<ContentType> elements;
 
+    // TODO: add/verify unit tests
+
     @Before
     public void prepareTypes() {
         elements = Arrays.asList(
