@@ -88,10 +88,10 @@ public final class LayoutBuilder {
     private LogLayout logLayout;
 
     @Nullable
-    private DependencyResolver customDependencyResolver;
+    private BrowserLayout browserLayout;
 
     @Nullable
-    private BrowserLayout browserLayout;
+    private DependencyResolver customDependencyResolver;
 
     @Nullable
     private ServerLayout serverLayout;
@@ -100,9 +100,11 @@ public final class LayoutBuilder {
      * Create a new layout builder.
      */
     public LayoutBuilder() {
+        browserLayout = DEFAULT_BROWSER_LAYOUT;
         dependencies = new ArrayList<>();
         environmentType = DEFAULT_ENVIRONMENT_TYPE;
         logLayout = DEFAULT_LOG_LAYOUT;
+        serverLayout = DEFAULT_SERVER_LAYOUT;
     }
 
     /**
