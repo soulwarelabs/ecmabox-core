@@ -15,6 +15,8 @@
  */
 package com.soulwarelabs.ecmabox.api.content.function;
 
+import java.util.Objects;
+
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
 import com.soulwarelabs.ecmabox.utility.Strings;
@@ -36,6 +38,7 @@ public final class FunctionDescriptor {
      * @param expression ECMA function expression.
      */
     public FunctionDescriptor(final String expression) {
+        Objects.requireNonNull(expression, "Function expression cannot be null");
         this.expression = expression;
     }
 
