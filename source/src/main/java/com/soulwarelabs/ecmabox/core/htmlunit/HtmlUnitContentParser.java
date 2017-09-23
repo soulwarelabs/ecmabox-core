@@ -45,6 +45,17 @@ import com.soulwarelabs.ecmabox.core.content.parser.ContentParserException;
 @Immutable
 public final class HtmlUnitContentParser implements ContentParser {
 
+    /**
+     * Gets an instance of this parser.
+     *
+     * @return parser instance.
+     */
+    public static HtmlUnitContentParser getInstance() {
+        return INSTANCE;
+    }
+
+    private static HtmlUnitContentParser INSTANCE = new HtmlUnitContentParser();
+
     @Override
     public Content parse(final @Nullable Object raw) {
         final ContentType type = type(raw);
