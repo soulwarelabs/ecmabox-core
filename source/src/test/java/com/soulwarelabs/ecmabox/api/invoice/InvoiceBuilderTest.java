@@ -21,6 +21,7 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -103,5 +104,28 @@ public class InvoiceBuilderTest {
                         ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_TIMEOUT_IN_MILLISECONDS),
                         ArgumentMatchers.eq(InvoiceBuilder.DEFAULT_VERSION)
                 );
+    }
+    @Ignore
+    @Test
+    public void createCopy() {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void createNewInstanceFromInvoice() {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failToCreateNewInstanceFromNullBuilder() {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failToCreateNewInstanceFromNullInvoice() {
+        // TODO: implement this test
     }
 }

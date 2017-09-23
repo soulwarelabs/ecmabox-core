@@ -15,7 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.utility;
 
+import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -28,5 +30,44 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @PrepareForTest({Discoverables.class})
 public class DiscoverablesTest {
 
-    // TODO: add unit tests
+    @Before
+    public void prepare() throws Exception {
+
+    }
+
+    @Ignore
+    @Test
+    public void discoverNoTypes() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void discoverOneTypes() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void discoverSeveralTypes() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failOnNullPackageName() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failOnNullTag() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void useDefaultPackageName() throws Exception {
+        // TODO: implement this test
+    }
 }

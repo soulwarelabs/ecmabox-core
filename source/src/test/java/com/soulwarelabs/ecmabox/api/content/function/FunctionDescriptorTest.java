@@ -15,7 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.api.content.function;
 
+import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -28,5 +30,20 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @PrepareForTest({FunctionDescriptor.class})
 public class FunctionDescriptorTest {
 
-    // TODO: add unit tests
+    @Before
+    public void before() throws Exception {
+
+    }
+
+    @Ignore
+    @Test
+    public void createNewValidInstance() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failToCreateNewInstanceWithNullExpression() throws Exception {
+        // TODO: implement this test
+    }
 }

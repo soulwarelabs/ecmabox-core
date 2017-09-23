@@ -18,6 +18,7 @@ package com.soulwarelabs.ecmabox.utility;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -51,5 +52,11 @@ public class StringsTest {
         final String result = Strings.toString(objectMock);
         PowerMockito.verifyStatic(ToStringBuilder.class);
         Assert.assertSame(stringMock, result);
+    }
+
+    @Ignore
+    @Test
+    public void createStringFromNullObject() throws Exception {
+        // TODO: implement this test
     }
 }

@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -50,6 +51,12 @@ public class ContentTest {
         Assert.assertFalse(value == content.getValue());
     }
 
+    @Ignore
+    @Test
+    public void copyValueIfMap() {
+        // TODO: implement this test
+    }
+
     @Test
     public void createNewValidInstance() {
         final Content content = createNewInstanceWithSampleValue();
@@ -70,10 +77,16 @@ public class ContentTest {
     }
 
     @Test
-    public void receiveUndefinedInstance() {
+    public void validUndefinedInstance() {
         final Content content = Content.undefined();
         Assert.assertEquals(ContentType.UNDEFINED, content.getType());
         Assert.assertNull(content.getValue());
+    }
+
+    @Ignore
+    @Test
+    public void validNullInstance() throws Exception {
+        // TODO: implement this test
     }
 
     private Content createNewInstanceWithSampleValue() {

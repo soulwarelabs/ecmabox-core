@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -47,8 +48,62 @@ public class ContentTypeTest {
                 );
     }
 
+    @Ignore
+    @Test
+    public void detectTypeOfNullObject() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = IllegalArgumentException.class)
+    public void failToDetectUnknownType() throws Exception {
+        // TODO: implement this test
+    }
+
     @Test
     public void doesNotContainExtraElements() {
         Assert.assertEquals(elements.size(), ContentType.values().length);
+    }
+
+    @Ignore
+    @Test
+    public void elementArrayIsValid() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void elementBooleanIsValid() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void elementNumberIsValid() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void elementFunctionIsValid() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void elementObjectIsValid() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void elementStringIsValid() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void elementUndefinedIsValid() throws Exception {
+        // TODO: implement this test
     }
 }

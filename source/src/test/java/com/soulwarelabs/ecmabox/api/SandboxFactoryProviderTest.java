@@ -15,7 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.api;
 
+import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -28,5 +30,20 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @PrepareForTest({SandboxFactoryProvider.class})
 public class SandboxFactoryProviderTest {
 
-    // TODO: add unit tests
+    @Before
+    public void prepare() throws Exception {
+
+    }
+
+    @Ignore
+    @Test(expected = RuntimeException.class)
+    public void failOnMissingInstantiationType() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void instantiateNewFactory() throws Exception {
+        // TODO: implement this test
+    }
 }

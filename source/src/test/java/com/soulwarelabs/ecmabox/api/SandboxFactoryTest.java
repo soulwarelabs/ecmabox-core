@@ -39,6 +39,16 @@ public class SandboxFactoryTest {
     private LayoutBuilder layoutBuilderMock;
 
     @Before
+    public void prepare() throws Exception {
+        PowerMockito
+                .mockStatic(LayoutBuilder.class);
+        PowerMockito
+                .whenNew(LayoutBuilder.class)
+                .withNoArguments()
+                .thenReturn(layoutBuilderMock);
+    }
+
+    @Before
     public void prepareFactory() throws Exception {
         factory = new SandboxFactory() {
 
@@ -49,18 +59,8 @@ public class SandboxFactoryTest {
         };
     }
 
-    @Before
-    public void prepareMocks() throws Exception {
-        PowerMockito
-                .mockStatic(LayoutBuilder.class);
-        PowerMockito
-                .whenNew(LayoutBuilder.class)
-                .withNoArguments()
-                .thenReturn(layoutBuilderMock);
-    }
-
     @Test
-    public void invokeLayoutBuilderConstructor() {
+    public void invokeLayoutBuilderConstructor() throws Exception {
         final LayoutBuilder builder = factory.layoutBuilder();
         Assert.assertSame(layoutBuilderMock, builder);
         PowerMockito.verifyNew(LayoutBuilder.class);

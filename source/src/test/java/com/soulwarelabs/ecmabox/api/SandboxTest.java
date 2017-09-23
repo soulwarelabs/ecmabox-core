@@ -44,6 +44,16 @@ public class SandboxTest {
     private InvoiceBuilder invoiceBuilderMock;
 
     @Before
+    public void prepare() throws Exception {
+        PowerMockito
+                .mockStatic(InvoiceBuilder.class);
+        PowerMockito
+                .whenNew(InvoiceBuilder.class)
+                .withNoArguments()
+                .thenReturn(invoiceBuilderMock);
+    }
+
+    @Before
     public void prepareSandbox() throws Exception {
         sandbox = new Sandbox() {
 
@@ -64,18 +74,8 @@ public class SandboxTest {
         };
     }
 
-    @Before
-    public void prepareMocks() throws Exception {
-        PowerMockito
-                .mockStatic(InvoiceBuilder.class);
-        PowerMockito
-                .whenNew(InvoiceBuilder.class)
-                .withNoArguments()
-                .thenReturn(invoiceBuilderMock);
-    }
-
     @Test
-    public void invokeInvoiceBuilderConstructor() {
+    public void invokeInvoiceBuilderConstructor() throws Exception {
         final InvoiceBuilder builder = sandbox.invoiceBuilder();
         Assert.assertSame(invoiceBuilderMock, builder);
         PowerMockito.verifyNew(InvoiceBuilder.class);

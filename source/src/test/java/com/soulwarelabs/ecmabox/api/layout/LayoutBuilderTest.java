@@ -19,6 +19,7 @@ import java.util.Collections;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -106,5 +107,29 @@ public class LayoutBuilderTest {
                         ArgumentMatchers.same(logLayoutMock),
                         ArgumentMatchers.same(serverLayoutMock)
                 );
+    }
+
+    @Ignore
+    @Test
+    public void createCopy() {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void createNewInstanceFromLayout() {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failToCreateNewInstanceFromNullBuilder() {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
+    public void failToCreateNewInstanceFromNullLayout() {
+        // TODO: implement this test
     }
 }

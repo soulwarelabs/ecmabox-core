@@ -15,7 +15,9 @@
  */
 package com.soulwarelabs.ecmabox.utility;
 
+import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -28,5 +30,26 @@ import com.soulwarelabs.ecmabox.test.convention.UnitTest;
 @PrepareForTest({Casts.class})
 public class CastsTest {
 
-    // TODO: add unit tests
+    @Before
+    public void prepare() throws Exception {
+
+    }
+
+    @Ignore
+    @Test
+    public void castNullObject() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test
+    public void castObject() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = ClassCastException.class)
+    public void failToCastObjectOfWrongType() throws Exception {
+        // TODO: implement this test
+    }
 }
