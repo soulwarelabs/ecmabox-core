@@ -25,9 +25,11 @@ import java.lang.annotation.Target;
 import com.soulwarelabs.ecmabox.convention.Private;
 
 /**
- * Marks a type which can be discovered on classpath.
+ * Marks a type which can be discovered on the classpath.
  * <br/>
- * Used to ensure a loose coupling between API and implementation parts.
+ * Used to ensure a loose coupling between the exposed API and the internal implementation.
+ *
+ * @see Discoverables
  *
  * @author Ilia Gubarev
  */
@@ -39,7 +41,7 @@ import com.soulwarelabs.ecmabox.convention.Private;
 public @interface Discoverable {
 
     /**
-     * Type unique tag, which can be used for its discovery later.
+     * Unique tag, which can be used for this type discovery.
      */
     String value();
 }

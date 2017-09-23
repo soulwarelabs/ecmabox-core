@@ -22,12 +22,13 @@ import java.util.List;
 import java.util.Objects;
 
 import com.soulwarelabs.ecmabox.convention.Builder;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Private;
 
 /**
  * Instance builder.
  * <br/>
- * Used to instantiate objects from special <link>Discoverable</link> types.
+ * Used to instantiate objects by special <link>Discoverable</link> types.
  *
  * @param <T> target object type.
  *
@@ -54,7 +55,7 @@ public final class InstanceBuilder<T> {
      * @param argument instantiation argument.
      * @return this instance builder.
      */
-    public InstanceBuilder<T> argument(final Object argument) {
+    public InstanceBuilder<T> argument(final @Nullable Object argument) {
         this.arguments.add(argument);
         return this;
     }
@@ -71,10 +72,12 @@ public final class InstanceBuilder<T> {
     }
 
     /**
-     * Sets instantiation type (not ot be confused with target type).
+     * Sets a special instantiation type (not to be confused with target type).
      *
      * @param instantiationType instantiation type.
      * @return this instance builder.
+     *
+     * @see Discoverable
      */
     public InstanceBuilder<T> instantiationType(final Class<?> instantiationType) {
         this.instantiationType = instantiationType;
@@ -82,7 +85,7 @@ public final class InstanceBuilder<T> {
     }
 
     /**
-     * Creates a new instance.
+     * Creates a new instance of the target type.
      *
      * @return new instance.
      */

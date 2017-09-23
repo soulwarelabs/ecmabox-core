@@ -17,6 +17,7 @@ package com.soulwarelabs.ecmabox.utility;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.reflections.Reflections;
 
@@ -24,7 +25,7 @@ import com.soulwarelabs.ecmabox.convention.Private;
 import com.soulwarelabs.ecmabox.convention.Static;
 
 /**
- * Utility helper class to work with <link>Discoverable</link> types.
+ * Utility class to work with <link>Discoverable</link> types.
  *
  * @see Discoverable
  *
@@ -67,8 +68,12 @@ public final class Discoverables {
         return reflections
                 .getTypesAnnotatedWith(Discoverable.class)
                 .stream()
-                .filter(t -> t.getAnnotation(Discoverable.class).value().equals(tag))
+                .filter(filterByTag(tag))
                 .findFirst();
+    }
+
+    private static Predicate<Class<?>> filterByTag(final String tag) {
+        return type -> type.getAnnotation(Discoverable.class).value().equals(tag);
     }
 
     private Discoverables() {
