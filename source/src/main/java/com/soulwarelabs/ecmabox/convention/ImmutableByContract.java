@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which is immutable by its contact.
+ * Marks a type which is effectively immutable by its contact.
  *
  * @see Immutable
  *

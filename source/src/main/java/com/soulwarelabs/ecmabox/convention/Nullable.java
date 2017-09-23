@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a method parameter or a method return type which can be <code>null</code>.
+ * Marks a type field, a method parameter or a method return value which can be <code>null</code>.
  *
  * @author Ilia Gubarev
  */

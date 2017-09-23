@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which is a part of exposed API.
+ * Marks a type which is a part of the exposed API.
  * <br/>
  * Such types are guaranteed to be kept back-compatible within a specific major version.
  *

@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which has mutable state but is thread-safe by its contract.
+ * Marks a type which has a mutable state, however it is effectively thread-safe by its contract.
  *
  * @see Concurrent
  *

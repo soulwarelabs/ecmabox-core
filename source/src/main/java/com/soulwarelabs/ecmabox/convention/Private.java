@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which is a part of internal implementation.
+ * Marks a type which is a part of the internal implementation.
  * <br/>
  * Such types could be changed without any back-compatibility support,
  * therefore they must not be referenced by a client code directly.

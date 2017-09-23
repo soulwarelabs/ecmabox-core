@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which acts like a static service.
+ * Marks a type which acts like a static utility or helper.
  *
  * @see Builder
  * @see Factory

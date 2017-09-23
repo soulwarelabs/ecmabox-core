@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which is immutable by its design.
+ * Marks a type which is immutable or stateless by its design.
  *
  * @see ImmutableByContract
  *

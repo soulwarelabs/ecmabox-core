@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which is aware of logical comparison, therefore can act like a key.
+ * Marks a type which is aware of logical comparison, therefore it can act like a key.
  *
  * @see java.util.Map
  * @see java.util.Set
