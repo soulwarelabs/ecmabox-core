@@ -73,7 +73,10 @@ public final class Discoverables {
     }
 
     private static Predicate<Class<?>> filterByTag(final String tag) {
-        return type -> type.getAnnotation(Discoverable.class).value().equals(tag);
+        return type -> type
+                .getAnnotation(Discoverable.class)
+                .value()
+                .equals(tag);
     }
 
     private Discoverables() {
