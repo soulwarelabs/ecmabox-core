@@ -34,7 +34,7 @@ import com.soulwarelabs.ecmabox.utility.Discoverable;
 public final class SandboxFactoryDiscovery {
 
     /**
-     * Creates a new instance of sandbox factory.
+     * Gets an instance of sandbox factory.
      *
      * @param arguments instantiation parameters (currently ignored).
      * @return new instance of sandbox factory.
@@ -42,6 +42,6 @@ public final class SandboxFactoryDiscovery {
      * @see SandboxFactory
      */
     public static SandboxFactory instantiate(final Object... arguments) {
-        throw new UnsupportedOperationException();
+        return SandboxFactoryProxy.getInstance();
     }
 }
