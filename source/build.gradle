@@ -10,7 +10,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 
 group 'com.soulwarelabs.ecmabox'
-version '0.1.0'
+version '1.0.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
