@@ -13,13 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-package com.soulwarelabs.ecmabox.core.dependency.resolver;
+package com.soulwarelabs.ecmabox.api.dependency;
 
 import java.util.Objects;
 
-import com.soulwarelabs.ecmabox.api.dependency.Dependency;
-import com.soulwarelabs.ecmabox.convention.Immutable;
-import com.soulwarelabs.ecmabox.convention.Private;
+import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
+import com.soulwarelabs.ecmabox.convention.Public;
 
 /**
  * Dependency resolution exception.
@@ -28,8 +27,8 @@ import com.soulwarelabs.ecmabox.convention.Private;
  *
  * @author Ilia Gubarev
  */
-@Private
-@Immutable
+@Public
+@ImmutableByContract
 public final class DependencyResolutionException extends RuntimeException {
 
     private final Dependency dependency;

@@ -21,6 +21,7 @@ import java.util.Objects;
 
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyOrigin;
+import com.soulwarelabs.ecmabox.api.dependency.DependencyResolutionException;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.invoice.InvoiceBuilder;
