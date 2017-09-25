@@ -32,15 +32,35 @@ public enum ResultTermination {
     /**
      * Execution has been terminated because it had produced an exception.
      */
-    EXCEPTION,
+    EXCEPTION(true),
+
+    /**
+     * Execution could not be successfully finished because of restrictions applied.
+     */
+    RESTRICTION(true),
 
     /**
      * Execution has been finished normally.
      */
-    SUCCESS,
+    SUCCESS(false),
 
     /**
      * Execution has been terminated because it had reached its timeout.
      */
-    TIMEOUT
+    TIMEOUT(true);
+
+    private final boolean failure;
+
+    ResultTermination(final boolean failure) {
+        this.failure = failure;
+    }
+
+    /**
+     * Checks if this termination has failure status.
+     *
+     * @return <code>true</code> if termination has failure status.
+     */
+    public boolean isFailure() {
+        return failure;
+    }
 }

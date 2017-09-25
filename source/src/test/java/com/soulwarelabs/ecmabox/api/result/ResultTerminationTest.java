@@ -37,6 +37,7 @@ public class ResultTerminationTest {
     public void prepareElements() throws Exception {
         elements = Arrays.asList(
                 ResultTermination.EXCEPTION,
+                ResultTermination.RESTRICTION,
                 ResultTermination.SUCCESS,
                 ResultTermination.TIMEOUT
         );
@@ -45,5 +46,10 @@ public class ResultTerminationTest {
     @Test
     public void doesNotContainExtraElements() throws Exception {
         Assert.assertEquals(elements.size(), ResultTermination.values().length);
+    }
+
+    @Test
+    public void failureFlagsAreCorrect() throws Exception {
+        Assert.assertTrue(ResultTermination.EXCEPTION.isFailure());
     }
 }
