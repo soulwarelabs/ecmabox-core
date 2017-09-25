@@ -31,50 +31,50 @@ import com.soulwarelabs.ecmabox.convention.Public;
 public class ContentParserException extends RuntimeException {
 
     @Nullable
-    private final Object raw;
+    private final Object value;
 
     /**
      * Creates a new exception.
      *
-     * @param raw execution object which caused the exception (optional).
+     * @param value value object which caused the exception (optional).
      */
-    public ContentParserException(final @Nullable Object raw) {
-        this.raw = raw;
+    public ContentParserException(final @Nullable Object value) {
+        this.value = value;
     }
 
     /**
      * Creates a new exception.
      *
-     * @param raw execution object which caused the exception (optional).
+     * @param value value object which caused the exception (optional).
      * @param message exception detailed comment (optional).
      */
-    public ContentParserException(final @Nullable Object raw,
+    public ContentParserException(final @Nullable Object value,
                                   final @Nullable String message) {
         super(message);
-        this.raw = raw;
+        this.value = value;
     }
 
     /**
      * Creates a new exception.
      *
-     * @param raw execution object which caused the exception (optional).
+     * @param value value object which caused the exception (optional).
      * @param message exception detailed comment (optional).
      * @param cause the root cause of this exception (optional).
      */
-    public ContentParserException(final @Nullable Object raw,
+    public ContentParserException(final @Nullable Object value,
                                   final @Nullable String message,
                                   final @Nullable Throwable cause) {
         super(message, cause);
-        this.raw = raw;
+        this.value = value;
     }
 
     /**
-     * Gets a raw execution object which caused the exception.
+     * Gets a value which caused the exception.
      *
-     * @return raw execution object (optional).
+     * @return value object (optional).
      */
     @Nullable
-    public Object getRaw() {
-        return raw;
+    public Object getValue() {
+        return value;
     }
 }
