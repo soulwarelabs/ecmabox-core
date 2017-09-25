@@ -73,7 +73,7 @@ public final class HtmlUnitSandboxFactory implements SandboxFactory {
             final StringWebResponse response = response(layout.getBrowserLayout());
             final WebWindow window = client.getCurrentWindow();
             final HtmlPage page = HTMLParser.parseHtml(response, window);
-            final Sandbox sandbox = new HtmlUnitSandbox(client, page, storage);
+            final Sandbox sandbox = new HtmlUnitSandbox(layout, client, page, storage);
             final DependencyResolver resolver = resolver(layout);
             for (final Dependency dependency : layout.getDependencies()) {
                 final Invoice dependencyInvoice = resolver.resolve(dependency);

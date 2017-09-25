@@ -20,6 +20,7 @@ import java.util.List;
 import com.soulwarelabs.ecmabox.api.inspection.Inspector;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.invoice.InvoiceBuilder;
+import com.soulwarelabs.ecmabox.api.layout.Layout;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.api.result.Result;
 import com.soulwarelabs.ecmabox.convention.Public;
@@ -36,6 +37,15 @@ import com.soulwarelabs.ecmabox.convention.Public;
  */
 @Public
 public interface Sandbox {
+
+    /**
+     * Gets the current layout for this sandbox.
+     *
+     * @return the current layout.
+     *
+     * @see Layout
+     */
+    Layout getLayout();
 
     /**
      * Drains (clears) a list of currently available log records.

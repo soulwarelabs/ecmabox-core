@@ -30,6 +30,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.soulwarelabs.ecmabox.api.inspection.Inspector;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.invoice.InvoiceBuilder;
+import com.soulwarelabs.ecmabox.api.layout.Layout;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.api.result.Result;
 import com.soulwarelabs.ecmabox.test.convention.UnitTest;
@@ -57,6 +58,11 @@ public class SandboxTest {
     @Before
     public void prepareSandbox() throws Exception {
         sandbox = new Sandbox() {
+
+            @Override
+            public Layout getLayout() {
+                return null;
+            }
 
             @Override
             public List<Record> drain() {

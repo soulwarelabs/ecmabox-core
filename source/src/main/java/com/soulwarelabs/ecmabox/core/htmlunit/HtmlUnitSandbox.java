@@ -28,6 +28,7 @@ import com.soulwarelabs.ecmabox.api.Sandbox;
 import com.soulwarelabs.ecmabox.api.content.Content;
 import com.soulwarelabs.ecmabox.api.inspection.Inspector;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
+import com.soulwarelabs.ecmabox.api.layout.Layout;
 import com.soulwarelabs.ecmabox.api.log.Record;
 import com.soulwarelabs.ecmabox.api.result.Result;
 import com.soulwarelabs.ecmabox.api.result.ResultTermination;
@@ -44,23 +45,32 @@ import com.soulwarelabs.ecmabox.core.content.parser.ContentParser;
 @Private
 public final class HtmlUnitSandbox implements Sandbox {
 
+    private final Layout layout;
     private final WebClient client;
     private final HtmlPage page;
     private final ContentParser parser;
     private final List<Record> recordsToDrain;
     private final HtmlUnitRecordStorage recordStorage;
 
-    public HtmlUnitSandbox(final WebClient client,
+    public HtmlUnitSandbox(final Layout layout,
+                           final WebClient client,
                            final HtmlPage page,
                            final HtmlUnitRecordStorage recordStorage) {
+        Objects.requireNonNull(client, "Sandbox layout cannot be null");
         Objects.requireNonNull(client, "Sandbox web client cannot be null");
         Objects.requireNonNull(client, "Sandbox web page cannot be null");
         Objects.requireNonNull(client, "Sandbox record storage cannot be null");
+        this.layout = layout;
         this.client = client;
         this.page = page;
         this.parser = HtmlUnitContentParser.getInstance();
         this.recordsToDrain = new ArrayList<>();
         this.recordStorage = recordStorage;
+    }
+
+    @Override
+    public Layout getLayout() {
+        return layout;
     }
 
     @Override
