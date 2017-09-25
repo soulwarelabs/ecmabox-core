@@ -27,11 +27,15 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 import com.soulwarelabs.ecmabox.api.Sandbox;
 import com.soulwarelabs.ecmabox.api.SandboxFactory;
+import com.soulwarelabs.ecmabox.api.SandboxFactoryException;
+import com.soulwarelabs.ecmabox.api.content.ContentParserException;
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
+import com.soulwarelabs.ecmabox.api.dependency.DependencyResolutionException;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.layout.BrowserLayout;
 import com.soulwarelabs.ecmabox.api.layout.Layout;
+import com.soulwarelabs.ecmabox.api.result.Result;
 import com.soulwarelabs.ecmabox.convention.Factory;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Private;
@@ -77,11 +81,14 @@ public final class HtmlUnitSandboxFactory implements SandboxFactory {
             final DependencyResolver resolver = resolver(layout);
             for (final Dependency dependency : layout.getDependencies()) {
                 final Invoice dependencyInvoice = resolver.resolve(dependency);
-                sandbox.execute(dependencyInvoice);
+                final Result dependencyResult = sandbox.execute(dependencyInvoice);
+                if (dependencyResult.getTermination().isFailure()) {
+                    throw new DependencyResolutionException(dependency, "Dependency execution failed");
+                }
             }
             return sandbox;
-        } catch (final IOException e) {
-            throw new RuntimeException(e);
+        } catch (final Exception exception) {
+            throw new SandboxFactoryException(layout, "Sandbox cannot be created", exception);
         }
     }
 
