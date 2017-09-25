@@ -121,6 +121,12 @@ public class InvoiceBuilderTest {
 
     @Ignore
     @Test(expected = NullPointerException.class)
+    public void failToAddNullRestriction() throws Exception {
+        // TODO: implement this test
+    }
+
+    @Ignore
+    @Test(expected = NullPointerException.class)
     public void failToCreateNewInstanceFromNullBuilder() throws Exception {
         // TODO: implement this test
     }

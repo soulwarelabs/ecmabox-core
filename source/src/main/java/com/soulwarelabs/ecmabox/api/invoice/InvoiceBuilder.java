@@ -148,6 +148,7 @@ public final class InvoiceBuilder {
      * @see InvoiceRestriction
      */
     public InvoiceBuilder restriction(final InvoiceRestriction restriction) {
+        Objects.requireNonNull(restriction, "Invoice restriction cannot be null");
         this.restrictions.add(restriction);
         return this;
     }
