@@ -29,7 +29,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  */
 @Public
 @ImmutableByContract
-public final class DependencyResolutionException extends RuntimeException {
+public class DependencyResolutionException extends RuntimeException {
 
     private final Dependency dependency;
 
