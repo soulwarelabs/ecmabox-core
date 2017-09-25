@@ -15,7 +15,6 @@
  */
 package com.soulwarelabs.ecmabox.core.htmlunit;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
@@ -28,7 +27,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.soulwarelabs.ecmabox.api.Sandbox;
 import com.soulwarelabs.ecmabox.api.SandboxFactory;
 import com.soulwarelabs.ecmabox.api.SandboxFactoryException;
-import com.soulwarelabs.ecmabox.api.content.ContentParserException;
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolutionException;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
