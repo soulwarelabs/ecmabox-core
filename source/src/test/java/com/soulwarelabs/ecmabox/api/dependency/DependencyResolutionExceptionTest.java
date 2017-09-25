@@ -37,14 +37,14 @@ public class DependencyResolutionExceptionTest {
     }
 
     @Ignore
-    @Test(expected = RuntimeException.class)
+    @Test(expected = NullPointerException.class)
     public void failToCreateNewInstanceWithNullDependency() throws Exception {
         // TODO: implement this test
     }
 
     @Ignore
     @Test
-    public void createNewValiudInstance() throws Exception {
+    public void createNewValidInstance() throws Exception {
         // TODO: implement this test
     }
 }

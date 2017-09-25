@@ -18,6 +18,7 @@ package com.soulwarelabs.ecmabox.api.dependency;
 import java.util.Objects;
 
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
+import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
 
 /**
@@ -36,14 +37,11 @@ public class DependencyResolutionException extends RuntimeException {
     /**
      * Creates a new exception.
      *
-     * @param message exception detailed comment.
      * @param dependency dependency which caused the exception.
      *
      * @see Dependency
      */
-    public DependencyResolutionException(final String message,
-                                         final Dependency dependency) {
-        super(message);
+    public DependencyResolutionException(final Dependency dependency) {
         requireNotNullDependency(dependency);
         this.dependency = dependency;
     }
@@ -53,13 +51,28 @@ public class DependencyResolutionException extends RuntimeException {
      *
      * @param message exception detailed comment.
      * @param dependency dependency which caused the exception.
+     *
+     * @see Dependency
+     */
+    public DependencyResolutionException(final Dependency dependency,
+                                         final @Nullable String message) {
+        super(message);
+        requireNotNullDependency(dependency);
+        this.dependency = dependency;
+    }
+
+    /**
+     * Creates a new exception.
+     *
+     * @param dependency dependency which caused the exception.
+     * @param message exception detailed comment.
      * @param cause the root cause of this exception (optional).
      *
      * @see Dependency
      */
-    public DependencyResolutionException(final String message,
-                                         final Dependency dependency,
-                                         final Throwable cause) {
+    public DependencyResolutionException(final Dependency dependency,
+                                         final @Nullable String message,
+                                         final @Nullable Throwable cause) {
         super(message, cause);
         requireNotNullDependency(dependency);
         this.dependency = dependency;

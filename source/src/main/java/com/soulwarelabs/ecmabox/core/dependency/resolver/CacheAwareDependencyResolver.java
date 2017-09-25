@@ -89,7 +89,7 @@ public final class CacheAwareDependencyResolver implements DependencyResolver {
         final ResourceScriptBroker broker = broker(dependency);
         final String result = broker.receive(dependency.getResource());
         if (result == null) {
-            throw new DependencyResolutionException("Resource script is not received", dependency);
+            throw new DependencyResolutionException(dependency, "Resource script is not received");
         }
         return result;
     }
@@ -97,7 +97,7 @@ public final class CacheAwareDependencyResolver implements DependencyResolver {
     private ResourceScriptBroker broker(final Dependency dependency) {
         final ResourceScriptBroker result = brokers.get(dependency.getOrigin());
         if (result == null) {
-            throw new DependencyResolutionException("Suitable broker is not found", dependency);
+            throw new DependencyResolutionException(dependency, "Suitable broker is not found");
         }
         return result;
     }
