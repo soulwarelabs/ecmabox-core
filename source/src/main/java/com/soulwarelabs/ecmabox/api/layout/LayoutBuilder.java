@@ -19,11 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
 import com.soulwarelabs.ecmabox.api.log.RecordLevel;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Nullable;
-import com.soulwarelabs.ecmabox.utility.Strings;
 import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.convention.Builder;
 import com.soulwarelabs.ecmabox.convention.Public;
@@ -42,6 +44,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  */
 @Public
 @Builder(Layout.class)
+@Equivalent
 public final class LayoutBuilder {
 
     /**
@@ -246,7 +249,43 @@ public final class LayoutBuilder {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final LayoutBuilder that = (LayoutBuilder) object;
+        return Objects.equals(dependencies, that.dependencies)
+                && environmentType == that.environmentType
+                && Objects.equals(logLayout, that.logLayout)
+                && Objects.equals(browserLayout, that.browserLayout)
+                && Objects.equals(customDependencyResolver, that.customDependencyResolver)
+                && Objects.equals(serverLayout, that.serverLayout);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                dependencies,
+                environmentType,
+                logLayout,
+                browserLayout,
+                customDependencyResolver,
+                serverLayout
+        );
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("dependencies", dependencies)
+                .append("environmentType", environmentType)
+                .append("logLayout", logLayout)
+                .append("browserLayout", browserLayout)
+                .append("customDependencyResolver", customDependencyResolver)
+                .append("serverLayout", serverLayout)
+                .toString();
     }
 }

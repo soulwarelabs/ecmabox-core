@@ -15,9 +15,13 @@
  */
 package com.soulwarelabs.ecmabox.core.cache;
 
+import java.util.Objects;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Private;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Common cache layout configuration.
@@ -26,6 +30,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Private
 @Immutable
+@Equivalent
 public final class CacheLayout {
 
     private final boolean enabled;
@@ -49,7 +54,26 @@ public final class CacheLayout {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final CacheLayout layout = (CacheLayout) object;
+        return enabled == layout.enabled;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(enabled);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .toString();
     }
 }

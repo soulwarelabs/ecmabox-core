@@ -23,7 +23,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marks a type which is aware of logical comparison, therefore it can act like a key.
+ * Marks a type which is aware of logical comparison (<code>.hashCode()</code> and <code>.equals()</code> methods).
  *
  * @see java.util.Map
  * @see java.util.Set
@@ -34,6 +34,6 @@ import java.lang.annotation.Target;
 @Inherited
 @Retention(RetentionPolicy.CLASS)
 @Target(ElementType.TYPE)
-public @interface Key {
+public @interface Equivalent {
 
 }

@@ -17,10 +17,12 @@ package com.soulwarelabs.ecmabox.api.layout;
 
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.soulwarelabs.ecmabox.api.log.RecordLevel;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Sandbox logging layout configuration.
@@ -31,6 +33,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class LogLayout {
 
     private final boolean enabled;
@@ -72,7 +75,28 @@ public final class LogLayout {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final LogLayout logLayout = (LogLayout) object;
+        return enabled == logLayout.enabled
+                && level == logLayout.level;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(enabled, level);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("level", level)
+                .toString();
     }
 }

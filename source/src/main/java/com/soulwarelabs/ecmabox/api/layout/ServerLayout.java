@@ -17,9 +17,11 @@ package com.soulwarelabs.ecmabox.api.layout;
 
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Server layout configuration.
@@ -30,6 +32,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class ServerLayout {
 
     private final ServerType type;
@@ -58,7 +61,26 @@ public final class ServerLayout {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final ServerLayout that = (ServerLayout) object;
+        return type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("type", type)
+                .toString();
     }
 }

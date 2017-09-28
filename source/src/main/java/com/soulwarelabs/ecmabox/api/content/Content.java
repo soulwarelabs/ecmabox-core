@@ -19,13 +19,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.soulwarelabs.ecmabox.api.content.function.FunctionDescriptor;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
 import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
 import com.soulwarelabs.ecmabox.utility.Casts;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Invoice execution result content.
@@ -36,6 +39,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @ImmutableByContract
+@Equivalent
 public final class Content {
 
     /**
@@ -174,8 +178,29 @@ public final class Content {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Content content = (Content) object;
+        return type == content.type
+                && Objects.equals(value, content.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, value);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("type", type)
+                .append("value", value)
+                .toString();
     }
 
     private <T> T copyAndCastValueIfRequired() {

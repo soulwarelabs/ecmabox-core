@@ -17,9 +17,11 @@ package com.soulwarelabs.ecmabox.api.content.function;
 
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * ECMA function descriptor.
@@ -28,6 +30,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class FunctionDescriptor {
 
     private final String expression;
@@ -52,7 +55,26 @@ public final class FunctionDescriptor {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final FunctionDescriptor that = (FunctionDescriptor) object;
+        return Objects.equals(expression, that.expression);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(expression);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("expression", expression)
+                .toString();
     }
 }

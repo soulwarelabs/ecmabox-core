@@ -18,7 +18,7 @@ package com.soulwarelabs.ecmabox.api.log;
 import java.util.Objects;
 
 import com.soulwarelabs.ecmabox.convention.Immutable;
-import com.soulwarelabs.ecmabox.convention.Key;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Public;
 
 /**
@@ -30,7 +30,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  */
 @Public
 @Immutable
-@Key
+@Equivalent
 public enum RecordLevel {
 
     /**

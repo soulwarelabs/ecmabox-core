@@ -18,9 +18,11 @@ package com.soulwarelabs.ecmabox.api.layout;
 import java.net.URL;
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Browser layout configuration.
@@ -31,6 +33,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class BrowserLayout {
 
     private final String html;
@@ -87,7 +90,30 @@ public final class BrowserLayout {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final BrowserLayout layout = (BrowserLayout) object;
+        return Objects.equals(html, layout.html)
+                && type == layout.type
+                && Objects.equals(url, layout.url);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(html, type, url);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("html", html)
+                .append("type", type)
+                .append("url", url)
+                .toString();
     }
 }

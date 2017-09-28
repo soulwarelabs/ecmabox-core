@@ -19,12 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.soulwarelabs.ecmabox.api.content.Content;
 import com.soulwarelabs.ecmabox.api.invoice.Invoice;
 import com.soulwarelabs.ecmabox.api.log.Record;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.ImmutableByContract;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Invoice execution result.
@@ -40,6 +42,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @ImmutableByContract
+@Equivalent
 public final class Result {
 
     private final Content content;
@@ -119,7 +122,32 @@ public final class Result {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Result result = (Result) object;
+        return Objects.equals(content, result.content)
+                && Objects.equals(invoice, result.invoice)
+                && Objects.equals(records, result.records)
+                && termination == result.termination;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(content, invoice, records, termination);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("content", content)
+                .append("invoice", invoice)
+                .append("records", records)
+                .append("termination", termination)
+                .toString();
     }
 }

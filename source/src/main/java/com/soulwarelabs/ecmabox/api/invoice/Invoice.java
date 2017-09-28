@@ -19,10 +19,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * ECMA script execution invoice.
@@ -36,6 +38,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class Invoice {
 
     private final boolean restricted;
@@ -153,7 +156,46 @@ public final class Invoice {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Invoice that = (Invoice) object;
+        return restricted == that.restricted
+                && timeoutEnabled == that.timeoutEnabled
+                && timeoutInMilliseconds == that.timeoutInMilliseconds
+                && Objects.equals(restrictions, that.restrictions)
+                && Objects.equals(script, that.script)
+                && Objects.equals(version, that.version)
+                && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                restricted,
+                restrictions,
+                script,
+                timeoutEnabled,
+                timeoutInMilliseconds,
+                version,
+                description
+        );
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("restricted", restricted)
+                .append("restrictions", restrictions)
+                .append("script", script)
+                .append("timeoutEnabled", timeoutEnabled)
+                .append("timeoutInMilliseconds", timeoutInMilliseconds)
+                .append("version", version)
+                .append("description", description)
+                .toString();
     }
 }

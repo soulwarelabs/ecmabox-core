@@ -17,10 +17,11 @@ package com.soulwarelabs.ecmabox.api.dependency;
 
 import java.util.Objects;
 
-import com.soulwarelabs.ecmabox.utility.Strings;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.soulwarelabs.ecmabox.utility.Urls;
 import com.soulwarelabs.ecmabox.convention.Immutable;
-import com.soulwarelabs.ecmabox.convention.Key;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Public;
 
 /**
@@ -33,7 +34,7 @@ import com.soulwarelabs.ecmabox.convention.Public;
  */
 @Public
 @Immutable
-@Key
+@Equivalent
 public final class Dependency {
 
     /**
@@ -128,6 +129,9 @@ public final class Dependency {
 
     @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("origin", origin)
+                .append("resource", resource)
+                .toString();
     }
 }

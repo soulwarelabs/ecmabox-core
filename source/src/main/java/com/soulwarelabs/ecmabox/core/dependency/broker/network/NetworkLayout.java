@@ -15,9 +15,13 @@
  */
 package com.soulwarelabs.ecmabox.core.dependency.broker.network;
 
+import java.util.Objects;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Private;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Network properties configuration.
@@ -26,12 +30,23 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Private
 @Immutable
+@Equivalent
 public final class NetworkLayout {
 
     // TODO: add network properties (proxy, auth, e.t.c)
 
     @Override
+    public boolean equals(final Object object) {
+        return !(object == null || getClass() != object.getClass());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash();
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this).toString();
     }
 }

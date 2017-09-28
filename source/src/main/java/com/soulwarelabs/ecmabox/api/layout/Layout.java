@@ -19,12 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import com.soulwarelabs.ecmabox.api.dependency.Dependency;
 import com.soulwarelabs.ecmabox.api.dependency.DependencyResolver;
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Sandbox layout configuration.
@@ -40,6 +42,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class Layout {
 
     private final List<Dependency> dependencies;
@@ -160,8 +163,44 @@ public final class Layout {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Layout layout = (Layout) object;
+        return Objects.equals(dependencies, layout.dependencies)
+                && environmentType == layout.environmentType
+                && Objects.equals(logLayout, layout.logLayout)
+                && Objects.equals(browserLayout, layout.browserLayout)
+                && Objects.equals(customDependencyResolver, layout.customDependencyResolver)
+                && Objects.equals(serverLayout, layout.serverLayout);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                dependencies,
+                environmentType,
+                logLayout,
+                browserLayout,
+                customDependencyResolver,
+                serverLayout
+        );
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("dependencies", dependencies)
+                .append("environmentType", environmentType)
+                .append("logLayout", logLayout)
+                .append("browserLayout", browserLayout)
+                .append("customDependencyResolver", customDependencyResolver)
+                .append("serverLayout", serverLayout)
+                .toString();
     }
 
     private void verifyEnvironmentLayouts() {

@@ -18,9 +18,11 @@ package com.soulwarelabs.ecmabox.api.log;
 import java.time.Instant;
 import java.util.Objects;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.soulwarelabs.ecmabox.convention.Equivalent;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Public;
-import com.soulwarelabs.ecmabox.utility.Strings;
 
 /**
  * Log record produced during an execution.
@@ -31,6 +33,7 @@ import com.soulwarelabs.ecmabox.utility.Strings;
  */
 @Public
 @Immutable
+@Equivalent
 public final class Record implements Comparable<Record> {
 
     private final String content;
@@ -93,7 +96,30 @@ public final class Record implements Comparable<Record> {
     }
 
     @Override
+    public boolean equals(final Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final Record record = (Record) object;
+        return Objects.equals(content, record.content)
+                && level == record.level
+                && Objects.equals(when, record.when);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(content, level, when);
+    }
+
+    @Override
     public String toString() {
-        return Strings.toString(this);
+        return new ToStringBuilder(this)
+                .append("content", content)
+                .append("level", level)
+                .append("when", when)
+                .toString();
     }
 }
