@@ -21,12 +21,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.soulwarelabs.ecmabox.autotest.blackbox.BaseBlackboxTest;
+import com.soulwarelabs.ecmabox.autotest.blackbox.BlackboxTestTemplate;
 import com.soulwarelabs.ecmabox.autotest.convention.BlackboxTest;
 
 @BlackboxTest
 @RunWith(JUnit4.class)
-public class RecordAccessTest extends BaseBlackboxTest {
+public class RecordAccessTest extends BlackboxTestTemplate {
 
     @Before
     public void prepare() throws Exception {

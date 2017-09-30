@@ -15,40 +15,47 @@
  */
 package com.soulwarelabs.ecmabox.autotest.blackbox.general;
 
-import org.junit.Before;
+import java.util.Arrays;
+
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import com.soulwarelabs.ecmabox.autotest.blackbox.BaseBlackboxTest;
+import com.soulwarelabs.ecmabox.api.content.ContentType;
+import com.soulwarelabs.ecmabox.api.result.Result;
+import com.soulwarelabs.ecmabox.autotest.blackbox.BlackboxTestTemplate;
 import com.soulwarelabs.ecmabox.autotest.convention.BlackboxTest;
 
 @BlackboxTest
 @RunWith(JUnit4.class)
-public class ContentTypeTest extends BaseBlackboxTest {
-
-    @Before
-    public void prepare() throws Exception {
-
-    }
+public class ContentTypeTest extends BlackboxTestTemplate {
 
     @Ignore
     @Test
-    public void executeInvoiceAndReceiveArray() throws Exception {
-        // TODO: implement this test
+    public void receiveArrayOfNumbers() throws Exception {
+        final String givenScript = "[1, 2, 3]";
+        final ContentType expectedType = ContentType.ARRAY;
+        final Object expectedValue = Arrays.asList(1.0, 2.0, 3.0);
+        executeAndAssert(givenScript, expectedType, expectedValue);
     }
 
     @Ignore
     @Test
     public void executeInvoiceAndReceiveArrayOfComplexObjects() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "[{p: 1}, {p: 2}, {p: 3}]");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.ARRAY);
+        assertValue(result, Arrays.asList(1.0, 1.0, 2.0, 3.0, 5.0));
     }
 
     @Ignore
     @Test
     public void executeInvoiceAndReceiveBoolean() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "1 === 1");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.BOOLEAN);
+        assertValue(result, true);
     }
 
     @Ignore
@@ -60,30 +67,54 @@ public class ContentTypeTest extends BaseBlackboxTest {
     @Ignore
     @Test
     public void executeInvoiceAndReceiveFunction() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "function () {}");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.FUNCTION);
+        assertValueNotNull(result);
     }
 
     @Ignore
     @Test
     public void executeInvoiceAndReceiveNullObject() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "null");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.OBJECT);
+        assertValueNull(result);
     }
 
     @Ignore
     @Test
     public void executeInvoiceAndReceiveNumber() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "40 + 2");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.NUMBER);
+        assertValue(result, 42.0);
     }
 
     @Ignore
     @Test
     public void executeInvoiceAndReceiveString() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "'test' +  ' ' + 'string'");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.STRING);
+        assertValue(result,"test string");
     }
 
     @Ignore
     @Test
     public void executeInvoiceAndReceiveUndefined() throws Exception {
-        // TODO: implement this test
+        final Result result = execute(sandbox(), "var x = {}; x.p");
+        assertTerminationSuccess(result);
+        assertType(result, ContentType.UNDEFINED);
+        assertValueNull(result);
+    }
+
+    private void executeAndAssert(final String givenScript,
+                                  final ContentType expectedType,
+                                  final Object expectedValue) {
+        final Result result = execute(sandbox(), givenScript);
+        assertTerminationSuccess(result);
+        assertType(result, expectedType);
+        assertValue(result, expectedValue);
     }
 }
