@@ -131,7 +131,7 @@ public final class Content {
      * @return content value.
      */
     @Nullable
-    public Double getValueAsDouble() {
+    public Number getValueAsNumber() {
         return copyAndCastValueIfRequired();
     }
 

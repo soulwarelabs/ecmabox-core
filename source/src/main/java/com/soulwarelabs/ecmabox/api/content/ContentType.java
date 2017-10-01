@@ -55,7 +55,7 @@ public enum ContentType {
     /**
      * Numeric object. Represented by {@link Double}.
      */
-    NUMBER(Double.class),
+    NUMBER(Number.class),
 
     /**
      * Generic composite object, including <code>null</code>. Represented by {@link java.util.Map}.

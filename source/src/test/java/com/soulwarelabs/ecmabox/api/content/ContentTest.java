@@ -41,7 +41,7 @@ public class ContentTest {
     public void castValueOnDemand() throws Exception {
         final Double value = 42.0;
         final Content content = Content.of(value);
-        Assert.assertEquals(value, content.getValueAsDouble());
+        Assert.assertEquals(value, content.getValueAsNumber());
     }
 
     @Test
