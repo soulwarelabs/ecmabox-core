@@ -27,6 +27,7 @@ import net.sourceforge.htmlunit.corejs.javascript.Undefined;
 
 import com.soulwarelabs.ecmabox.api.content.Content;
 import com.soulwarelabs.ecmabox.api.content.ContentType;
+import com.soulwarelabs.ecmabox.api.content.function.FunctionDescriptor;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Private;
@@ -86,7 +87,8 @@ public final class HtmlUnitContentParser implements ContentParser {
     }
 
     private Content parseRawAsNativeFunction(final Object raw) {
-        final String value = raw.toString().replace("\n", "").trim();
+        final String expression = raw.toString().replace("\n", "").trim();
+        final FunctionDescriptor value = new FunctionDescriptor(expression);
         return Content.of(value);
     }
 
