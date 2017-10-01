@@ -93,13 +93,22 @@ public abstract class BlackboxTestTemplate {
     }
 
     /**
-     * Creates a new sandbox with a default implementation.
+     * Creates a new sandbox with a default layout.
      *
      * @return new sandbox.
      */
     protected Sandbox sandbox() {
+        return sandbox(layout());
+    }
+
+    /**
+     * Creates a new sandbox with a custom layout.
+     *
+     * @param layout custom sandbox layout.
+     * @return new sandbox.
+     */
+    protected Sandbox sandbox(final Layout layout) {
         final SandboxFactory factory = SandboxFactoryProvider.factory();
-        final Layout layout = layout();
         return factory.create(layout);
     }
 
