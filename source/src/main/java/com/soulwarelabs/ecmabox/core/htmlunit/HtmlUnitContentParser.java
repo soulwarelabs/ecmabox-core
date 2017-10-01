@@ -26,13 +26,13 @@ import net.sourceforge.htmlunit.corejs.javascript.NativeObject;
 import net.sourceforge.htmlunit.corejs.javascript.Undefined;
 
 import com.soulwarelabs.ecmabox.api.content.Content;
+import com.soulwarelabs.ecmabox.api.content.ContentParserException;
 import com.soulwarelabs.ecmabox.api.content.ContentType;
 import com.soulwarelabs.ecmabox.api.content.function.FunctionDescriptor;
 import com.soulwarelabs.ecmabox.convention.Immutable;
 import com.soulwarelabs.ecmabox.convention.Nullable;
 import com.soulwarelabs.ecmabox.convention.Private;
 import com.soulwarelabs.ecmabox.core.content.parser.ContentParser;
-import com.soulwarelabs.ecmabox.core.content.parser.ContentParserException;
 
 /**
  * HtmlUnit-specific script execution result parser.
@@ -134,7 +134,7 @@ public final class HtmlUnitContentParser implements ContentParser {
         if (raw instanceof NativeObject) {
             return ContentType.OBJECT;
         }
-        throw new ContentParserException("Unknown raw object type", raw);
+        throw new ContentParserException(raw, "Unknown raw object type");
     }
 
     private HtmlUnitContentParser() {
